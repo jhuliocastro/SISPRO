@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            EDITAR CADASTRO - <span style="font-weight: bold;">{{nome}}</span>
+        </div>
+        <div class="card-body">
+            <form autocomplete="off" method="post" action="/clientes/editar">
+                <fieldset class="fild">
+                    Dados pessoais do cliente
+                </fieldset>
+                <div class="row">
+                    <div class="cell-4">
+                        <div class="form-group">
+                            <label>Nome Completo</label>
+                            <input type="text" date-role="input" id="nome" name="nome" value="{{nome}}" required>
+                        </div>
+                    </div>
+                    <div class="cell-4">
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <input type="text" date-role="input" id="email" name="email" value="{{email}}" required>
+                        </div>
+                    </div>
+                    <div class="cell-2">
+                        <div class="form-group">
+                            <label>Data Cadastro</label>
+                            <input type="date" id="dataCadastro" name="dataCadastro" value="{{dataCadastro}}" disabled data-role="input">
+                        </div>
+                    </div>
+                    <div class="cell-2">
+                        <div class="form-group">
+                            <label>Data Nascimento</label>
+                            <input type="date" id="dataNascimento" name="dataNascimento" value="{{dataNascimento}}" data-role="input">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell-2">
+                        <div class="form-group">
+                            <label>RG</label>
+                            <input type="text" date-role="input" id="rg" name="rg" value="{{rg}}" required>
+                        </div>
+                    </div>
+                    <div class="cell-2">
+                        <div class="form-group">
+                            <label>CPF</label>
+                            <input type="text" date-role="input" id="cpf" name="cpf" value="{{cpf}}" required>
+                        </div>
+                    </div>
+                    <div class="cell-4">
+                        <div class="form-group">
+                            <label>Nome do Pai</label>
+                            <input type="text" date-role="input" id="nomePai" name="nomePai" value="{{pai}}">
+                        </div>
+                    </div>
+                    <div class="cell-4">
+                        <div class="form-group">
+                            <label>Nome da Mãe</label>
+                            <input type="text" date-role="input" id="nomeMae" name="nomeMae" value="{{mae}}">
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="fild">
+                    Endereço Residencial
+                </fieldset>
+                <div class="row">
+                    <div class="cell-2">
+                        <div class="form-group">
+                            <label>CEP</label>
+                            <input type="text" date-role="input" id="cep" name="cep" required value="{{cep}}">
+                        </div>
+                    </div>
+                    <div class="cell-6">
+                        <div class="form-group">
+                            <label>Endereco</label>
+                            <input type="text" date-role="input" id="endereco" name="endereco" required value="{{endereco}}">
+                        </div>
+                    </div>
+                    <div class="cell-1">
+                        <div class="form-group">
+                            <label>Número</label>
+                            <input type="text" date-role="input" id="numero" name="numero" required value="{{numero}}">
+                        </div>
+                    </div>
+                    <div class="cell-3">
+                        <div class="form-group">
+                            <label>Bairro</label>
+                            <input type="text" date-role="input" id="bairro" name="bairro" required value="{{bairro}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell-3">
+                        <div class="form-group">
+                            <label>Cidade</label>
+                            <input type="text" date-role="input" id="cidade" name="cidade" required value="{{cidade}}">
+                        </div>
+                    </div>
+                    <div class="cell-3">
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <input type="text" id="estado" name="estado" value="{{estado}}">
+                        </div>
+                    </div>
+                    <div class="cell-3">
+                        <div class="form-group">
+                            <label>Complemento</label>
+                            <input type="text" date-role="input" id="complemento" name="complemento" value="{{complemento}}">
+                        </div>
+                    </div>
+                    <div class="cell-3">
+                        <div class="form-group">
+                            <label>Coordenadas</label>
+                            <input type="text" date-role="input" id="coordenadas" name="coordenadas" value="{{coordenadas}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="button primary">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

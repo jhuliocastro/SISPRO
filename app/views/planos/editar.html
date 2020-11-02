@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .row{
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">PLANOS :: EDITAR :: {{nome}}</h4>
+    <form autocomplete="off" method="post" action="/planos/editar">
+        <input type="hidden" value="{{id}}" name="id">
+        <input type="hidden" value="{{nome}}" name="nomeAntigo">
+        <div class="card">
+            <div class="card-content p-5">
+                <fieldset class="fild">
+                    Dados Técnicos
+                </fieldset>
+                <div class="row mb-2">
+                    <label class="cell-sm-1">Download</label>
+                    <div class="cell-sm-11">
+                        <input type="text" name="download" data-role="input" class="input-small" value="{{download}}" placeholder="kbps" required>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <label class="cell-sm-1">Upload</label>
+                    <div class="cell-sm-11">
+                        <input type="text" name="upload" data-role="input" class="input-small" value="{{upload}}" placeholder="kbps" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="cell-sm-1">Valor</label>
+                    <div class="cell-sm-11">
+                        <input type="text" name="valor" data-role="input" class="input-small" value="{{valor}}" placeholder="00,00" required>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="button primary">Atualizar</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

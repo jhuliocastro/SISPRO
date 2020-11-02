@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .row{
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">POOL :: CADASTRAR</h4>
+    <form autocomplete="off" method="post" action="/pool/cadastrar">
+        <div class="card">
+            <div class="card-content p-5">
+                <div class="row">
+                    <div class="col">
+                        <fieldset class="fild">
+                            Nome
+                        </fieldset>
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input data-role="input" type="text" name="nome">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <fieldset class="fild">
+                            Faixa 1 - IP: 200.X.X.X
+                        </fieldset>
+                        <div class="form-group">
+                            <label>Início</label>
+                            <input data-role="input" type="text" name="inicioFaixa1">
+                        </div>
+                        <div class="form-group">
+                            <label>Fim</label>
+                            <input data-role="input" type="text" name="fimFaixa1">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <fieldset class="fild">
+                            Faixa 2 - IP: X.200.X.X
+                        </fieldset>
+                        <div class="form-group">
+                            <label>Início</label>
+                            <input data-role="input" type="text" name="inicioFaixa2">
+                        </div>
+                        <div class="form-group">
+                            <label>Fim</label>
+                            <input data-role="input" type="text" name="fimFaixa2">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <fieldset class="fild">
+                            Faixa 3 - IP: X.X.200.X
+                        </fieldset>
+                        <div class="form-group">
+                            <label>Início</label>
+                            <input data-role="input" type="text" name="inicioFaixa3">
+                        </div>
+                        <div class="form-group">
+                            <label>Fim</label>
+                            <input data-role="input" type="text" name="fimFaixa3">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <fieldset class="fild">
+                            Faixa 4 - IP: X.X.X.200
+                        </fieldset>
+                        <div class="form-group">
+                            <label>Início</label>
+                            <input data-role="input" type="text" name="inicioFaixa4">
+                        </div>
+                        <div class="form-group">
+                            <label>Fim</label>
+                            <input data-role="input" type="text" name="fimFaixa4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="button primary">Cadastrar</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .row{
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">TÍTULOS :: RECEBER</h4>
+    <form autocomplete="off" method="post" action="/ficha/receber">
+        <div class="card" style="width: 800px;">
+            <div class="card-content p-5">
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <input type="text" data-role="input" value="{{tipo}}" class="input-small" id="tipo" name="tipo" disabled style="cursor: not-allowed; color: black;">
+                </div>
+                <div class="form-group">
+                    <label>Data Recebimento</label>
+                    <input type="date" data-role="input" class="input-small" id="dataRecebimento" name="dataRecebimento" required>
+                </div>
+                <div class="form-group">
+                    <label>Método Pagamento</label>
+                    <select data-role="select" data-filter="false" class="input-small" name="modoPagamento" id="modoPagamento">
+                        <option>DINHEIRO</option>
+                        <option>CARTÃO DE CRÉDITO</option>
+                        <option>CARTÃO DE DÉBITO</option>
+                        <option>DEPÓSITO</option>
+                        <option>TRANSFERÊNCIA</option>
+                        <option>BOLETO</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Valor</label>
+                    <input type="text" data-role="input" class="input-small" value="{{valorTotal}}" class="form-control" id="valor" name="valor" placeholder="R$ 00,00" readonly style="cursor: not-allowed;">
+                </div>
+                <div class="form-group">
+                    <label>Juros</label>
+                    <input type="text" style="cursor: not-allowed;" readonly data-role="input" class="input-small" value="{{mora}}" id="juros" name="juros" placeholder="R$ 00,00">
+                </div>
+                <div class="form-group">
+                    <label>Desconto</label>
+                    <input type="text" data-role="input" class="input-small" id="desconto" name="desconto" placeholder="R$ 00,00">
+                </div>
+                <div class="form-group">
+                    <label>Número do Cartão</label>
+                    <input type="text" data-role="input" class="input-small" name="numeroCartao" id="numeroCartao">
+                </div>
+                <div class="form-group">
+                    <label>Bandeira Cartão</label>
+                    <select class="input-small" data-role="select" data-filter="false" name="bandeiraCartao" id="bandeiraCartao">
+                        <option>VISA</option>
+                        <option>MASTERCARD</option>
+                        <option>ELO</option>
+                        <option>HIPER</option>
+                        <option>OUTROS</option>
+                    </select>
+                </div>
+                <div class="form-group" style="text-align: right;">
+                    <input type="hidden" value="{{id}}" name="id" id="id">
+                    <input type="hidden" value="{{cliente}}" id="cliente" name="cliente">
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="button primary">Receber</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(function(){
+        var valor = "{{valor}}";
+
+        var juros;
+
+        function valorCalc() {
+            var valortit = valor;
+
+            //var valortit = valortit.replace('.', '');
+            var valortit = valortit.replace(',', '.');
+
+            var multa_mora = $("#juros").val();
+            var desconto = $("#desconto").val();
+
+            var multa_mora = multa_mora.replace('.', '');
+            var multa_mora = multa_mora.replace(',', '.');
+
+            var desconto = desconto.replace('.', '');
+            var desconto = desconto.replace(',', '.');
+
+            if (multa_mora == "") multa_mora = 0.00;
+            if (desconto == "") desconto = 0.00;
+
+            var final = ((parseFloat(valortit) + parseFloat(multa_mora)) - parseFloat(desconto)).toFixed(2);
+            if (final < 0) final = '0.00';
+            final = final.replace('.', ",");
+            //final = final.replace("109", "");
+            $("#valor").val(final);
+        }
+
+        $('#valor').mask('#.##0,00', {
+            reverse: true
+        });
+        $('#juros').mask('#.##0,00', {
+            reverse: true
+        });
+
+        $("#juros").change(function(){
+            valorCalc();
+        });
+
+        $("#desconto").change(function(){
+            valorCalc();
+        });
+
+        $('#desconto').mask('#.##0,00', {
+            reverse: true
+        });
+    });
+</script>
+</body>
+</html>

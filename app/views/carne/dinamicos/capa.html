@@ -1,0 +1,688 @@
+<html lang="en"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="max-age=0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />-->
+    <title>BrbOS - PrintService</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/assets/img/favicon.ico">
+    <!--<link type="text/css" rel="stylesheet" href="/print_svc/assets/css/print.css?v=1.0-130" />-->
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="appBootstrap" src="/print_svc/assets/js/appBootstrap.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="appModule" src="/print_svc/assets/js/appModule.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="appRoutes" src="/print_svc/assets/js/appRoutes.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="brbCommonAngular/services/dependencyResolverFor" src="/common/assets/js/angular/services/dependencyResolverFor.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="brbCommonAngular/directives/brbFilters" src="/common/assets/js/angular/directives/brbFilters.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="controllers/CarnetCoverController" src="/print_svc/assets/js/controllers/CarnetCoverController.js"></script><base href="/">
+    <style type="text/css">
+        @media print {
+            .no-print,
+            .no-print * {
+                display: none !important;
+            }
+        }
+        @page {
+            /*size: A4;*/
+            margin: 0.5cm;
+        }
+        @page :left {
+            margin-left: 25px;
+        }
+
+        @page :right {
+            margin-right: 25px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        /*    @media print{@page {size: landscape}}
+
+            @page { size : portrait }
+            @page rotated { size : landscape }*/
+        html,
+        body {
+            /*font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;*/
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 9pt;
+            height: 100%;
+            margin: 0px;
+            color: #000000;
+        }
+        ul.print-header {
+            font-size: 10pt;
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        .linha-tracejada {
+            background: url(/print_svc/assets/img/tesoura.gif) left top no-repeat;
+            height: 13px;
+            margin-top: -11px;
+            text-align: center;
+            width: 100%;
+            overflow: hidden;
+            font-size: 12pt;
+        }
+        .negrito {
+            color: #000;
+            font-weight: bold;
+            /*font-family: Arial, Helvetica, sans-serif;*/
+        }
+        .dest {
+            color: #000;
+            padding-bottom: 3px;
+            padding-top: 3px;
+            padding-left: 1px;
+        }
+        .a4 .dest {
+            font-size: 12pt;
+        }
+        .mm80 .dest {
+            font-size: 12pt;
+        }
+
+        /*Block Headline*/
+        .headline {
+            display: block;
+            margin: 10px 0 15px 0;
+            border-bottom: 1px dotted #e4e9f0;
+        }
+        .headline h2,
+        .headline h3,
+        .headline h4 {
+            color: #585f69;
+            margin: 0 0 -1px 0;
+            padding-bottom: 2px;
+            display: inline-block;
+            border-bottom: 2px solid #313131;
+        }
+        .wrap .row {
+            content: " ";
+            display: table;
+            width: 100%
+        }
+
+        .print-doc,
+        .print-carnet {
+            page-break-after: always
+        }
+
+        .print-doc .a4,
+        .print-carnet .a4{
+            width: 100%;
+            margin: 0 auto;
+            padding: 5px;
+            height: 334px;
+        }
+
+        .print-doc .mm80 {
+            width: 80mm;
+            margin: 0 auto
+        }
+
+
+        .valor {
+            font-weight: bold;
+        }
+        .limita-instrucoes {
+            max-width: 400px;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .title-section {
+            font-size: 7pt;
+            font-weight: bold;
+            width: 100%;
+            display: inline-block
+        }
+        .caixa {
+            border: 2px solid;
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: table;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-color: #ccc;
+        }
+        .caixa .caixa-informacoes {
+            display: table-cell;
+            vertical-align: middle;
+            margin: 0 auto;
+            text-align: center
+        }
+        .caixa span:last-child {
+            font-size: 10pt
+        }
+        .sacador {
+            color: #000
+        }
+
+        .sign-block {
+            margin-top: 5mm;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .sign-block .sign-box {
+            width: 50%;
+            display: inline-block;
+            vertical-align: text-top;
+            font-size: 0.8em;
+            line-height: 1.6em;
+            text-transform: uppercase;
+            text-align: left;
+        }
+        .sign-block .sign-line {
+            text-align: center;
+        }
+
+        .limit_text_line {
+            /*text-overflow: ellipsis;*/
+            /*overflow: hidden;*/
+            /*white-space: nowrap;*/
+            white-space: normal;
+        }
+        .print-doc .a4 .informacoes-cobranca {
+            width: 100%;
+            display: block
+        }
+        .print-doc .a4 .informacoes-cobranca .partial-caixa-quadrada:first-child,
+        .print-doc .a4 .informacoes-cobranca .partial-caixa-quadrada:nth-child(2) {
+            padding-right: 2%
+        }
+        .print-doc .a4 .informacoes-cobranca .partial-caixa-quadrada:first-child,
+        .print-doc .a4 .informacoes-cobranca .partial-caixa-quadrada:nth-child(2),
+        .print-doc .a4 .informacoes-cobranca .partial-caixa-quadrada:nth-child(3) {
+            width: 31%
+        }
+        .print-doc .a4 .informacoes-cobranca .partial-caixa-quadrada .caixa-informacoes .title-section {
+            font-size: 6pt;
+            font-weight: 500;
+        }
+        .print-doc .a4 .informacoes-cobranca .partial-caixa-quadrada:nth-child(3) .caixa-informacoes .title-section {
+            padding-bottom: 2px
+        }
+
+        .print-doc .a4 .partial-caixa-quadrada {
+            display: inline-block
+        }
+        .print-doc .a4 .linha-tracejada {
+            margin: 2mm 0mm;
+            text-align: inherit;
+            font-size: 10px
+        }
+
+
+        .print-doc .mm80 .informacoes-cobranca {
+            width: 100%;
+            display: block
+        }
+        .print-doc .mm80 .informacoes-cobranca .partial-caixa-quadrada:first-child,
+        .print-doc .mm80 .informacoes-cobranca .partial-caixa-quadrada:nth-child(2) {
+            padding-right: 2%
+        }
+        .print-doc .mm80 .informacoes-cobranca .partial-caixa-quadrada:first-child,
+        .print-doc .mm80 .informacoes-cobranca .partial-caixa-quadrada:nth-child(2),
+        .print-doc .mm80 .informacoes-cobranca .partial-caixa-quadrada:nth-child(3) {
+            width: 31%
+        }
+        .print-doc .mm80 .informacoes-cobranca .partial-caixa-quadrada .caixa-informacoes .title-section {
+            font-size: 6pt;
+            font-weight: 500;
+        }
+        .print-doc .mm80 .informacoes-cobranca .partial-caixa-quadrada:nth-child(3) .caixa-informacoes .title-section {
+            padding-bottom: 2px
+        }
+
+        .print-doc .mm80 .partial-caixa-quadrada {
+            display: inline-block
+        }
+        .print-doc .mm80 .linha-tracejada {
+            margin: 2mm 0mm;
+            text-align: inherit;
+            font-size: 10px
+        }
+
+        .print-doc .invoice {
+            page-break-inside: avoid;
+            padding-bottom: 2mm;
+            margin-bottom: 2mm;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .print-doc .invoice .office-info {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .print-doc .invoice .office-info .logo {
+            width: 60mm;
+            float: left;
+            margin: 1mm;
+        }
+        .print-doc .invoice .office-info .logo img {
+            max-height: 120px;
+            max-width: 146px;
+        }
+        .print-doc .invoice .office-info .profile {
+            text-transform: uppercase;
+            width: 80mm;
+            float: left;
+            margin: 1mm;
+        }
+        .print-doc .invoice .office-info .profile p {
+            font-size: 0.8em;
+            line-height: 1.6em;
+        }
+        .print-doc .invoice .office-info .tile {
+            width: 40mm;
+            float: right;
+            text-align: right;
+            font-size: 0.8em;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .print-carnet .cover {
+            page-break-inside: avoid;
+            position: relative;
+            display: block;
+            border-top: 0.52mm dashed #999;
+            border-bottom: 0.2mm dashed #d0cdcd;
+            height: 340px;
+            overflow: hidden;
+        }
+        .print-carnet .cover .cover-box {
+            display: block;
+            /*width: 100%;*/
+            padding: 10px;
+        }
+        .print-carnet .cover .cover-info {
+            display: inline-block;
+            width: 69%;
+            /*float: left;*/
+            /*margin: 2mm 5mm;*/
+        }
+        .print-carnet .cover .cover-info h1 {
+            font-size: 2.6em;
+        }
+        .print-carnet .cover .cover-info .office-info h2 {
+            font-size: 2.1em;
+        }
+        .print-carnet .cover .cover-info .office-info p {
+            font-size: 1.0em;
+        }
+        .print-carnet .cover .title-info {
+            width: 100%;
+            text-align: center;
+            padding: 30px 0 20px 0;
+        }
+        .print-carnet .cover .client-info {
+            margin: 0 auto;
+            width: 100mm;
+            /*        position: absolute;
+                    top: 219px;
+                    left: 205px;*/
+            /*    float: left;
+                margin: 5mm;*/
+            padding: 8px;
+            background-color: #f8f8f8;
+            border: 1px solid #f2f2f2;
+            border-radius: 9px;
+        }
+        .print-carnet .cover .client-info p {
+            font-size: 1.1em;
+        }
+        .print-carnet .cover .client-info h3 {
+            font-size: 1.1em;
+            padding-bottom: 8px;
+        }
+        .print-carnet .cover .office-logo {
+            display: inline-block;
+            vertical-align: top;
+            width: 30%;
+            /*float: right;*/
+            text-align: right;
+            padding-top: 10px;
+            /*margin: 5mm;*/
+        }
+        .print-carnet .cover .office-logo img {
+            max-width: 100%;
+            max-height: 115px;
+        }
+        .print-carnet .invoice {
+            page-break-inside: avoid;
+            position: relative;
+            display: block;
+            border-top: 0.52mm dashed #999;
+            height: 340px;
+            overflow: hidden;
+        }
+        .print-carnet .invoice:nth-child(3n+1) {
+            border-bottom: 0.52mm dashed #999;
+        }
+        .print-carnet .invoice .receipt {
+            border-right: 0.52mm dashed #999;
+            padding: 5px 5px 10px 0px;
+            float: left;
+            width: 23%;
+        }
+        .print-carnet .invoice .office-info {
+            position: relative;
+            height: 46px;
+            margin-bottom: 10px;
+        }
+        .print-carnet .invoice .office-info h2 {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+        .print-carnet .invoice .billet {
+            padding: 5px 0px;
+            float: right;
+            width: 75%;
+        }
+        .print-carnet .invoice .imagem-banco {
+            width: 90px;
+        }
+        .print-carnet .invoice .dest {
+            font-size: 14px;
+        }
+        .print-carnet .a4 .boleto .autentication {
+            font-size: 7px;
+        }
+        .boleto table:first-of-type {
+            border-top: none;
+            border-right: none;
+            border-left: none;
+        }
+        .boleto table:first-of-type tr td:nth-child(1),
+        .boleto table:first-of-type tr td:nth-child(2) {
+            border-right: 1px solid #cccccc;
+        }
+        .boleto table:nth-child(2) tr:nth-child(odd) td {
+            border-top: 1px solid #cccccc;
+        }
+        .boleto table:nth-child(2) tr td:last-child {
+            border-right: none;
+        }
+        .boleto table:nth-child(2) tr:last-child td {
+            border-left: none;
+            border-right: none;
+        }
+        .boleto table:nth-child(2) tr td {
+            border-left: 1px solid #cccccc;
+        }
+        .boleto table:nth-child(2) tr:nth-child(even) {
+            color: #000;
+            border-left: 1px solid #cccccc;
+        }
+        /*      .boleto table:nth-child(2) tr:nth-child(20) td {
+                border-bottom: 1px solid #cccccc;
+              }
+              .boleto table:nth-child(2) tr:nth-child(21) td {
+                border: none;
+              }*/
+        .boleto .valorCobrado {
+            font-size: 9px;
+        }
+
+        .a4 .boleto {
+            font-size: 9px;
+            font-family: Arial, Helvetica, sans-serif
+        }
+        .a4 .boleto table:nth-child(2) tr:nth-child(odd) {
+            font-size: 8px;
+            color: #000;
+        }
+        .a4 .boleto .text-sm {
+            font-size: 8px;
+        }
+        .a4 .boleto table:nth-child(2) tr:nth-child(even) {
+            font-size: 9px;
+        }
+        .a4 .boleto .codigo-barras {
+            margin-left: 3mm;
+            height: 40px;
+        }
+        .a4 .boleto .sacador {
+            font-size: 10px
+        }
+        .a4 .boleto .valorCobrado {
+            font-size: 10px
+        }
+        .a4 .boleto table:nth-child(2) tr td {
+            padding-top: 1px;
+            padding-left: 3px
+        }
+
+        .mm80 .boleto {
+            font-size: 11px;
+            font-family: Arial, Helvetica, sans-serif
+        }
+        .mm80 .boleto table:nth-child(2) tr:nth-child(odd) {
+            font-size: 8px;
+            color: #000;
+        }
+        .mm80 .boleto .text-sm {
+            font-size: 9px;
+        }
+        .mm80 .boleto table:nth-child(2) tr:nth-child(even) {
+            font-size: 10px
+        }
+        .mm80 .boleto .codigo-barras {
+            height: 40px;
+        }
+        .mm80 .boleto .sacador {
+            font-size: 10px
+        }
+        .mm80 .boleto .valorCobrado {
+            font-size: 10px
+        }
+        .mm80 .boleto table:nth-child(2) tr td {
+            padding-top: 1px;
+            padding-left: 3px
+        }
+        .mm80 .print-dem {
+            padding-top: 5px;
+            width: 80mm;
+        }
+        .mm80 .print-dem table tbody tr td {
+            font-size: 8pt;
+            border-bottom: 1px solid;
+            border-color: #e4e9f0;
+            max-width: 45mm;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal
+        }
+
+        .billet-details {
+            margin-top: 3mm;
+            position: relative;
+        }
+        .billet-details .client-info {
+            width: 40%;
+            content: " ";
+            min-height: 1px;
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        .billet-details .client-info .box {
+            display: inline-block;
+            padding-left: 8px;
+            max-height: 55px;
+            max-width: 350px;
+            padding-bottom: 5px;
+            padding-right: 5px;
+        }
+        .col-cliente,
+        .col-caixas {
+            content: " ";
+            min-height: 1px;
+            display: table-cell;
+        }
+        .billet-details .col-caixas {
+            width: 60%;
+            display: inline-block;
+        }
+        .billet-details .client-info div {
+            font-size: 8pt
+        }
+        .print-obs .title-section,
+        .print-dem .title-section {
+            padding-left: 8px;
+            padding-bottom: 5px;
+        }
+        .print-dem {
+            padding-top: 5px;
+        }
+        .print-obs {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .print-obs div:last-child {
+            background-color: #e4e9f0;
+            font-size: 9pt;
+            border-radius: 3px;
+            padding-left: 10px;
+            max-height: 34px;
+            vertical-align: middle;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .print-dem table {
+            width: 100%;
+            border-collapse: collapse
+        }
+        .print-dem table thead {
+            font-weight: bold;
+            background-color: #e4e9f0;
+            text-align: center;
+            line-height: 14px
+        }
+        .print-dem table thead tr td {
+            font-size: 7pt;
+            border-right: 2px solid;
+            border-color: white
+        }
+        .print-dem table thead tr td:last-child {
+            border-right: none
+        }
+        .print-dem table tbody {
+            text-align: center;
+            line-height: 18px
+        }
+        .print-dem table tbody tr td {
+            font-size: 8pt;
+            border-bottom: 1px solid;
+            border-color: #e4e9f0;
+            max-width: 290px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
+        }
+        .print-dem table tbody tr td:first-child {
+            text-align: left;
+            padding-left: 15px
+        }
+        .print-dem div:last-child {
+            font-size: 7pt;
+            padding-left: 16px;
+            font-weight: bold;
+            padding-top: 5px
+        }
+
+        .print-doc .mm80 .linha-tracejada {
+            page-break-before: always;
+        }
+
+        .print-doc .mm80 .invoice {
+            page-break-after: always;
+        }
+
+        .print-doc .mm80 .invoice .office-info{
+            margin-top: 12mm;
+        }
+
+        .print-doc .mm80 .invoice .office-info .logo,
+        .print-doc .mm80 .invoice .office-info .profile,
+        .print-doc .mm80 .invoice .office-info .tile {
+            width: 100%;
+            float: none;
+            padding: 1mm;
+        }
+        .print-doc .mm80 .invoice .office-info .logo,
+        .print-doc .mm80 .invoice .office-info .tile {
+            text-align: center;
+        }
+        .print-doc .mm80 .invoice .office-info .profile p {
+            font-size: 0.9em;
+        }
+
+        .mm80 .billet-details .client-info {
+            width: 100%;
+            display: block;
+        }
+
+        .mm80 .billet-details .col-caixas {
+            width: 100%;
+            margin-top: 1em;
+            display: block;
+        }
+
+        .mm80 .billet-details .col-caixas .caixa {
+            border: 0px;
+            height: 100%;
+            width: 100%;
+            border-radius: 0px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .mm80 .sign-block .sign-box {
+            width: 100%;
+            display: block;
+        }
+        .mm80 .sign-block .sign-line {
+            margin-top: 2rem;
+        }
+
+    </style>
+    <body style="">
+<div class="overlay"></div>
+<!--PAGE CONTENT-->
+<!-- ngView:  --><div class="wrap ng-view ng-scope" id="main"><div class="print-doc a4 ng-scope" ng-controller="CarnetCoverController">
+    <div class="a4 print-carnet">
+        <!-- ngRepeat: coverData in covers --><brb-carnet-cover class="row cover ng-scope ng-isolate-scope" ng-repeat="coverData in covers" cover-data="coverData"><div class="cover-box">
+        <div class="cover-info">
+            <div class="office-info">
+                <h3 class="ng-binding">JHULIO CESAR OLIVEIRA DE CASTRO ME</h3>
+                <p class="ng-binding">Fone: (81) 99468-8754</p>
+                <p class="ng-binding">Rua José Sales, 29, Bairro Novo</p>
+                <p class="ng-binding">CEP: 55819-750 - Carpina / PE</p>
+            </div>
+        </div>
+
+        <div class="office-logo">
+            <img src="/src/img/logo.png" alt="Logo">
+        </div>
+    </div>
+<br/>
+        <div class="title-info">
+            <h1>CARNÊ DE PAGAMENTO</h1>
+        </div>
+
+        <div class="client-info">
+            <h3 class="ng-binding">YLKA POHANNE SANTANA DOS SANTOS</h3>
+            <!-- ngIf: coverData.client_phones != '' --><p ng-if="coverData.client_phones != ''" class="ng-binding ng-scope">(48) 98373-6022</p><!-- end ngIf: coverData.client_phones != '' -->
+            <p class="ng-binding">RUA JOSÉ SALES, 107<span ng-if="coverData.client_addr_neighborhood != ''" class="ng-binding ng-scope">- BAIRRO NOVO</span><!-- end ngIf: coverData.client_addr_neighborhood != '' --></p>
+            <!-- ngIf: coverData.client_addr_completion != '' -->
+            <p class="ng-binding">CEP: 55810000 - CARPINA/PE</p>
+        </div></brb-carnet-cover><!-- end ngRepeat: coverData in covers -->
+    </div>
+</div></div>
+</body></html>

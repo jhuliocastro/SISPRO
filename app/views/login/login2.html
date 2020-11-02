@@ -1,0 +1,170 @@
+
+<! DOCTYPE html>
+<html>
+<head>
+    <title>SISPRO | {{empresa}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/src/img/favicon.ico"/>
+    <link rel="stylesheet" href="/src/login/bootstrap.min.css">
+    <link rel="stylesheet" href="/src/login/open-iconic-bootstrap.min.css">
+    <style type="text/css">
+        html,body{
+            width:100%;
+            background:#314351;
+        }
+        .form-row{
+            max-width:400px;
+        }
+        #logo img {
+            width: 100%;
+            max-width:450px;
+            max-height: 260px;
+        }
+        input, .input-group-text {
+            background-color: transparent! important;
+            border: solid 1px transparent! important;
+            color: #8797a4 !important;
+            border-color: inherit;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .input:focus, .input:hover {
+            outline:0 !important;
+            box-shadow: none !important;
+        }
+
+        .input-group-text {
+            border-right:none!important;
+            padding-right:1px;
+        }
+
+        .input-group {
+
+            border: 1px solid #4F5E6A !important;
+            border-radius: 3px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            transition:all 0.2s ease-in-out;
+        }
+
+        .form-control {
+        }
+
+        .input-group:focus, .input-group:hover {
+            outline: 0 !important;
+            background: #4F5E6A !important;
+        }
+
+        .form-control:focus, .form-control:hover {
+            color: #FAFAFA !important;
+        }
+
+        .errornote{
+            margin: none;
+            color:#ff5e70;
+            max-width: 390px;
+        }
+        @media (min-width: 992px) {
+            .form-cont{
+                text-align:left!important;
+            }
+            #logo{
+                border-right:solid 1px #4F5E6A;
+                padding:80px 100px 100px 0px;
+            }
+            #login{
+                padding-left:100px;
+
+            }
+        }
+
+        @media (max-width: 991px) {
+            .form-row{
+                margin: 40px auto;
+            }
+            .errornote{
+                margin: auto;
+            }
+        }
+        img{
+            max-height: 150px;
+        }
+        #entrar{
+            background-color: #4F5E6A;
+            border-color: #4F5E6A;
+            color:#fff;
+            box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.2);
+        }
+
+        #entrar:hover{
+            background-color: #4F5E6A;
+            border-color:#607D8B!important;
+        }
+
+    </style>
+</head>
+<body>
+<div class="conten-wraper">
+    <div class="container">
+        <div class="row h-100">
+            <div id="logo" class="d-none d-lg-block col-lg-6 align-self-center  cont" style="text-align:right"><img src="/src/img/logoBranca.png"></img></div>
+            <div id="login" class="col-12 col-lg-6 align-self-center cont" style="text-align:left;">
+                <div class="d-block d-lg-none col-12" style="text-align:center;"><img style="max-width:90%" src="{{base}}/src/img/logoBranca.png"></img></div>
+                <div class="col-12 form-cont" style="text-align:center;">
+
+                    <form action="/login" method="post" id="login-form">
+                        <input type='hidden' name='csrfmiddlewaretoken' value='4yWJKMLb6fXbicXGdqjEg8p1EbeXQvgxWT0h5TuLuI2reNQKn61P6MKpmuryLQpO' />
+                        <div class="form-row align-items-center">
+                            <div class="col-12">
+                                <label class="sr-only" for="usuario">Usuário</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="usuario" autocomplete="off" name="usuario" class="form-control" placeholder="Usuário" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="sr-only" for="senha">Senha</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                                                <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <input type="password" id="senha" name="senha" autocomplete="off" class="form-control" placeholder="Senha" required>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" id="entrar" class="btn mb-2">Acessar</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+            <div class="col-12 footer" style="margin:auto;">
+                <p class="text-center small" style="line-height:100%;padding-top: 50px; color: #CCCCCC;">&copy; {{copyright}} {{empresa}} | 1.0.3 BETA</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    document.getElementById('usuario').focus()
+</script>
+
+<script src="/src/login/jquery-3.3.1.min.js" ></script>
+<script src="/src/login/bootstrap.min.js"></script>
+</body>
+</html>

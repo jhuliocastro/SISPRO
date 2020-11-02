@@ -1,0 +1,209 @@
+<nav data-role="ribbonmenu">
+    <ul class="tabs-holder">
+        <li class="static"><a href="/painel">Painel</a></li>
+        <li><a href="#clientes">Clientes</a></li>
+        <li><a href="#provedor">Provedor</a></li>
+        <li><a href="#financeiro">Financeiro</a></li>
+        <li><a href="#estoque">Estoque</a></li>
+        <li><a href="#relatorios">Relatórios</a></li>
+    </ul>
+
+    <div class="content-holder">
+        <div class="section" id="clientes">
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/clientes/cadastrar'">
+                    <span class="icon">
+                        <img src="/src/img/addUser.png">
+                    </span>
+                    <span class="caption">Cadastrar</span>
+                </button>
+                <span class="title">Dados</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/telefones/add'">
+                    <span class="icon">
+                        <img src="/src/img/add.png">
+                    </span>
+                    <span class="caption">Novo</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/telefones'">
+                    <span class="icon">
+                        <img src="/src/img/telefone.png">
+                    </span>
+                    <span class="caption">Telefones</span>
+                </button>
+                <span class="title">Contatos</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/contratos/cadastrar'">
+                    <span class="icon">
+                        <img src="/src/img/add.png">
+                    </span>
+                    <span class="caption">Novo</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/contratos'">
+                    <span class="icon">
+                        <img src="/src/img/contrato.png">
+                    </span>
+                    <span class="caption">Contratos</span>
+                </button>
+                <span class="title">Contratos</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/dossie/upload'">
+                    <span class="icon">
+                        <img src="/src/img/upload.png">
+                    </span>
+                    <span class="caption">Upload</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/dossie/arquivos'">
+                    <span class="icon">
+                        <img src="/src/img/arquivo.png">
+                    </span>
+                    <span class="caption">Arquivos</span>
+                </button>
+                <span class="title">Dossiê Eletrônico</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/clientes/lista/ativados'">
+                    <span class="icon">
+                        <img src="/src/img/lista.png">
+                    </span>
+                    <span class="caption">Clientes Ativados</span>
+                </button>
+                <span class="title">Relação</span>
+            </div>
+        </div>
+        <div class="section" id="provedor">
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/planos/cadastrar'">
+                    <span class="icon">
+                        <img src="/src/img/add.png">
+                    </span>
+                    <span class="caption">Cadastrar</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/planos/lista'">
+                    <span class="icon">
+                        <img src="/src/img/lista.png">
+                    </span>
+                    <span class="caption">Lista</span>
+                </button>
+                <span class="title">Planos</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/servidor/dados'">
+                    <span class="icon">
+                        <img src="/src/img/servidor.png">
+                    </span>
+                    <span class="caption">Servidor</span>
+                </button>
+                <span class="title">Servidor</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/pool/cadastrar'">
+                    <span class="icon">
+                        <img src="/src/img/add.png">
+                    </span>
+                    <span class="caption">Cadastrar</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/pool/lista'">
+                    <span class="icon">
+                        <img src="/src/img/lista.png">
+                    </span>
+                    <span class="caption">Listar</span>
+                </button>
+                <span class="title">Pools</span>
+            </div>
+        </div>
+        <div class="section" id="financeiro">
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/ficha/cadastrar/titulos'">
+                    <span class="icon">
+                        <img src="/src/img/add.png">
+                    </span>
+                    <span class="caption">Cadastrar Títulos</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/ficha/selecionar'">
+                    <span class="icon">
+                        <img src="/src/img/fichaFinanceira.png">
+                    </span>
+                    <span class="caption">Ficha Financeira</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/carne'">
+                    <span class="icon">
+                        <img src="/src/img/carne.png">
+                    </span>
+                    <span class="caption">Carnê</span>
+                </button>
+                <span class="title">Clientes</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/caixa/incluir'">
+                    <span class="icon">
+                        <img src="/src/img/add.png">
+                    </span>
+                    <span class="caption">Novo Lançamento</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/caixa/fechar'">
+                    <span class="icon">
+                        <img src="/src/img/fechar.png">
+                    </span>
+                    <span class="caption">Fechar Caixa</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/caixa'">
+                    <span class="icon">
+                        <img src="/src/img/caixa.png">
+                    </span>
+                    <span class="caption">Caixa Diário</span>
+                </button>
+                <span class="title">Caixa</span>
+            </div>
+        </div>
+        <div class="section" id="estoque">
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/fornecedores/cadastrar'">
+                    <span class="icon">
+                        <img src="/src/img/add.png">
+                    </span>
+                    <span class="caption">Cadastrar</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/fornecedores/relacao'">
+                    <span class="icon">
+                        <img src="/src/img/lista.png">
+                    </span>
+                    <span class="caption">Relação</span>
+                </button>
+                <span class="title">Fornecedores</span>
+            </div>
+        </div>
+        <div class="section" id="relatorios">
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/caixa/relatorio/selecionar'">
+                    <span class="icon">
+                        <img src="/src/img/caixa.png">
+                    </span>
+                    <span class="caption">Caixa Diário</span>
+                </button>
+                <span class="title">Caixa</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/relatorios/faturas/atrasadas'">
+                    <span class="icon">
+                        <img src="/src/img/fichaFinanceira.png">
+                    </span>
+                    <span class="caption">Faturas em Atraso</span>
+                </button>
+                <span class="title">Financeiro</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/relatorios/conexoes'">
+                    <span class="icon">
+                        <img src="/src/img/conexoes.png">
+                    </span>
+                    <span class="caption">Conexões de Acesso</span>
+                </button>
+                <span class="title">Outros</span>
+            </div>
+        </div>
+    </div>
+</nav>

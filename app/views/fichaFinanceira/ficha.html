@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+      <style>
+          .tg  {border-collapse:collapse;border-spacing:0;text-align: center;width: 100%;}
+          .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+              overflow:hidden;padding:10px 5px;word-break:normal;}
+          .tg th{border-color:black;border-style:solid;border-width:0px;font-family:Arial, sans-serif;font-size:14px;
+              font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;text-align: center;}
+          .tg .tg-cly1{vertical-align:middle}
+          .chart{
+              border: 10px solid black;
+              height: 150px;
+              width: 150px;
+              border-radius: 150px;
+              text-align: center;
+              margin: 0 auto;
+          }
+
+          .texto{
+              font-size: 24px;
+              font-weight: bold;
+              color: black;
+              line-height: 120px;
+          }
+
+          .texto2{
+              font-size: 18px;
+              color: black;
+              font-weight: bold;
+          }
+      </style>
+  </head>
+  <body>
+    {{menu}}
+  </br>
+    <div class="container-fluid">
+        <h4 style="text-align: center;">FICHA FINANCEIRA :: {{cliente}}</h4>
+        <div class="card" style="padding: 5px;">
+            <div class="card-body">
+                <div class="TESTE">
+                    <table class="tg">
+                        <thead>
+                        <tr>
+                            <th class="tg-cly1">
+                                <span class="texto2">PAGO</span>
+                                <div class="chart" style="border-color: green;">
+                                    <span class="texto">R$ {{valorPago}}</span>
+                                </div>
+                            </th>
+                            <th class="tg-cly1">
+                                <span class="texto2">À VENCER</span>
+                                <div class="chart" style="border-color: gray;">
+                                    <span class="texto">R$ {{valorVencer}}</span>
+                                </div>
+                            </th>
+                            <th class="tg-cly1">
+                                <span class="texto2">VENCIDO</span>
+                                <div class="chart" style="border-color: red;">
+                                    <span class="texto">R$ {{valorVencido}}</span>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+                    <br/>
+                </div>
+                <table class="display" id="tabela" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Situação</th>
+                            <th>Vencimento</th>
+                            <th>Nosso Número</th>
+                            <th>Valor</th>
+                            <th>Valor Pago</th>
+                            <th>Pagamento</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{tabela}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function recibo(){
+            window.open("/app/views/fichaFinanceira/dinamicos/recibo.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
+        }
+        var id;
+        var tabela = $('#tabela').DataTable({
+            dom: 'Bfrtip',
+            responsive: false,
+            paging: false,
+            "aaSorting": [[ 3, "desc" ]],
+            "columns": [
+                null,
+                null,
+                null,
+                { "type": "date-eu" },
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+            }
+        });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">POOL :: LISTA</h4>
+    <div class="card" style="padding: 5px;">
+        <div class="card-body">
+            <table class="display" id="tabela" style="width: 100%;">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>IP Início</th>
+                    <th>IP Fim</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {{tabela}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="dialogNovo" title="Novo Plano">
+    <form method="post" id="formNovo">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" name="nome" id="nome" data-role="input">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Download</label>
+                    <input type="text" name="download" id="download" data-role="input" placeholder="MB">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Upload</label>
+                    <input type="text" name="upload" id="upload" data-role="input" placeholder="MB">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Valor</label>
+                    <input type="text" name="valor" id="valor" data-role="input" placeholder="00,00">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    var id;
+    var tabela = $('#tabela').DataTable({
+        dom: 'Bfrtip',
+        responsive: false,
+        paging: true,
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+        }
+    });
+
+    function excluir(id){
+        $.ajax({
+            url: "/planos/excluir",
+            type: "POST",
+            data: {
+                id : id
+            }
+        }).done(function (data) {
+            if(data == true){
+                tabela.ajax.reload();
+                Swal.fire({
+                    icon: "success",
+                    title: "Plano excluído com sucesso!"
+                });
+            }else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Erro ao excluir plano!",
+                    text: "Consulte o log para mais informações"
+                });
+            }
+            console.log(data);
+        }).fail(function (data) {
+            console.log(data);
+            Swal.fire({
+                icon: "error",
+                title: "Erro ao excluir plano!",
+                text: "Consulte o log para mais informações"
+            });
+        });
+    }
+
+    function salvar(){
+        $.ajax({
+            url: "/planos/cadastrar",
+            type: "POST",
+            data: {
+                nome : $("#nome").val(),
+                download : $("#download").val(),
+                upload : $("#upload").val(),
+                valor : $("#valor").val()
+            }
+        }).done(function (data) {
+            if(data == true){
+                tabela.ajax.reload();
+                Swal.fire({
+                    icon: "success",
+                    title: "Plano cadastrado com sucesso!"
+                });
+            }else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Erro ao cadastrar plano!",
+                    text: "Consulte o log para mais informações"
+                });
+            }
+            console.log(data);
+        }).fail(function (data) {
+            console.log(data);
+            Swal.fire({
+                icon: "error",
+                title: "Erro ao cadastrar plano!",
+                text: "Consulte o log para mais informações"
+            });
+        });
+        $("#dialogNovo").dialog("close");
+    }
+
+    $(document).ready(function(){
+        $("#dialogNovo").dialog({
+            autoOpen: false,
+            width: 800,
+            modal: true,
+            show: {
+                effect: "fade",
+                duration: 500
+            },
+            hide: {
+                effect: "fade",
+                duration: 500
+            },
+            buttons:{
+                "Cancelar": function(){
+                    $(this).dialog("close");
+                },
+                "Salvar": function(){
+                    salvar();
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .botaoTabela{
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            Dossiê Eletrônico
+        </div>
+        <div class="card-body">
+            <ul data-role="listview" data-view="content" data-select-node="true">
+                {{diretorios}}
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="dialogArquivo" title="Arquivo">
+    <div id="pdf"></div>
+</div>
+<script>
+    function diretorio(cliente){
+        window.location.href = "/dossie/arquivos/" + cliente;
+    }
+
+    function vizualizar(arquivo){
+        let t = "<embed style='width: 100%; height: 500px;' src=\"/arquivos/" + arquivo + "\" type='application/pdf'>";
+        $("#pdf").html(t);
+        $("#dialogArquivo").dialog("open");
+    }
+    $(document).ready(function(){
+        $("#dialogArquivo").dialog({
+            autoOpen: false,
+            width: 800,
+            modal: true,
+            show: {
+                effect: "fade",
+                duration: 500
+            },
+            hide: {
+                effect: "fade",
+                duration: 500
+            }
+        });
+    });
+</script>
+</body>
+</html>

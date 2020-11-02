@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SISPRO | {{empresa}}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-borderless@3/borderless.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+    <style>
+        .swal2-popup{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<script>
+    var Clientes = {{opcoes}};
+    Swal.fire({
+        title: 'SELECIONE O CLIENTE DESEJADO',
+        input: 'select',
+        inputOptions: {
+            Clientes
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Procurar',
+        cancelButtonText: 'Voltar',
+        focusConfirm: false
+    }).then((result) => {
+        if(result.isConfirmed){
+            let url = "/carne/cliente/" + result.value;
+            window.location.href = url;
+        }else{
+            window.location.href = "/painel";
+        }
+    })
+</script>
+</body>
+</html>

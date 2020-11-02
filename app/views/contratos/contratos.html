@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">CONTRATOS :: LISTA</h4>
+    <div class="card" style="padding: 5px;">
+        <div class="card-body">
+            <table class="display" id="tabela" style="width: 100%;">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Situação</th>
+                    <th>Cliente</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {{tabela}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    var id;
+    var tabela = $('#tabela').DataTable({
+        dom: 'Bfrtip',
+        responsive: false,
+        paging: false,
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+        }
+    });
+
+    function imprimir(id){
+        $.ajax({
+            url: "/contratos/imprimir",
+            type: "POST",
+            data: {
+                id: id
+            },
+            dataType: "html"
+
+        }).done(function(resposta) {
+            console.log(resposta);
+            window.open("/app/views/contratos/dinamicos/contrato.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
+        }).fail(function(jqXHR, textStatus ) {
+            console.log("Request failed: " + textStatus);
+        });
+    }
+</script>
+</body>
+</html>

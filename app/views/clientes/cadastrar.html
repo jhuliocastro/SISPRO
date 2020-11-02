@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">CLIENTES :: CADASTRO</h4>
+    <form autocomplete="off" method="post" action="/clientes/cadastrar" id="formCadastro">
+    <div class="card">
+        <div class="card-content p-4">
+                <ul data-role="tabs" data-expand="true">
+                    <li><a href="#dados">Dados</a></li>
+                    <li><a href="#conexao">Conexão</a></li>
+                    <li><a href="#enderecoDiv">Endereço</a></li>
+                    <li><a href="#financeiroC">Financeiro</a></li>
+                </ul>
+                <div class="border bd-default no-border-top p-2">
+                    <div id="financeiroC">
+                        <fieldset class="fild">
+                            Financeiro
+                        </fieldset>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Data Vencimento</label>
+                            <select name="dataVencimento">
+                                <option>5</option>
+                                <option>10</option>
+                                <option>15</option>
+                                <option>20</option>
+                                <option>25</option>
+                                <option>30</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="dados">
+                        <fieldset class="fild">
+                            Dados pessoais do cliente
+                        </fieldset>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Nome Completo</label>
+                            <div class="cell-sm-10">
+                                <input type="text" class="input-small" data-role="input" id="nome" name="nome" required>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">E-mail</label>
+                            <div class="cell-sm-10">
+                                <input type="text" data-role="input" class="input-small" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Data Cadastro</label>
+                            <div class="cell-sm-10">
+                                <input type="date" id="dataCadastro" class="input-small" name="dataCadastro" data-role="input">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Data Nascimento</label>
+                            <div class="cell-sm-10">
+                                <input type="date" id="dataNascimento" class="input-small" name="dataNascimento" data-role="input">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">RG</label>
+                            <div class="cell-sm-10">
+                                <input type="number" data-role="input" class="input-small" id="rg" name="rg" required placeholder="APENAS NÚMEROS">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">CPF</label>
+                            <div class="cell-sm-10">
+                                <input type="number" data-role="input" class="input-small" id="cpf" name="cpf" required placeholder="APENAS NÚMEROS">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Nome do Pai</label>
+                            <div class="cell-sm-10">
+                                <input type="text" data-role="input" class="input-small" id="nomePai" name="nomePai">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Nome da Mãe</label>
+                            <div class="cell-sm-10">
+                                <input type="text" data-role="input" class="input-small" id="nomeMae" name="nomeMae">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="conexao">
+                        <fieldset class="fild">
+                            Conexão do Cliente
+                        </fieldset>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Usuário</label>
+                            <div class="cell-sm-10">
+                                <input type="text" class="input-small" data-role="input" id="usuario" name="usuario" required>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Senha</label>
+                            <div class="cell-sm-10">
+                                <input type="text" class="input-small" data-role="input" id="senha" name="senha" required>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Plano</label>
+                            <div class="cell-sm-10">
+                                <select data-role="select" name="plano" class="input-small">{{planos}}</select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="enderecoDiv">
+                        <fieldset class="fild">
+                            Endereço Residencial
+                        </fieldset>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">CEP</label>
+                            <div class="cell-sm-10">
+                                <input type="text" data-role="input" class="input-small" id="cep" name="cep" required>
+                            </div>
+
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Endereco</label>
+                            <div class="cell-sm-10">
+                                <input type="text" data-role="input" class="input-small" id="endereco" name="endereco" required>
+                            </div>
+
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Número</label>
+                            <div class="cell-sm-10">
+                                <input type="text" data-role="input" class="input-small" id="numero" name="numero" required>
+                            </div>
+
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Bairro</label>
+                            <div class="cell-sm-10">
+                                <input type="text" data-role="input" class="input-small" id="bairro" name="bairro" required>
+                            </div>
+
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Cidade</label>
+                            <div class="cell-sm-10">
+                                <input type="text" data-role="input" class="input-small" id="cidade" name="cidade" required>
+                            </div>
+
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Estado</label>
+                            <div class="cell-sm-10">
+                                <select data-role="select" data-filter="false" class="input-small" id="estado" name="estado">
+                                    <option  value="AC">Acre</option>
+                                    <option  value="AL">Alagoas</option>
+                                    <option  value="AP">Amap&aacute;</option>
+                                    <option  value="AM">Amazonas</option>
+                                    <option  value="BA">Bahia</option>
+                                    <option  value="CE">Cear&aacute;</option>
+                                    <option  value="DF">Distrito Federal</option>
+                                    <option  value="ES">Esp&iacute;rito Santo</option>
+                                    <option  value="GO">Goias</option>
+                                    <option  value="MA">Maranh&atilde;o</option>
+                                    <option  value="MT">Mato Grosso</option>
+                                    <option  value="MS">Mato Grosso do Sul</option>
+                                    <option  value="MG">Minas Gerais</option>
+                                    <option  value="PA">Par&aacute;</option>
+                                    <option  value="PB">Para&iacute;ba</option>
+                                    <option  value="PR">Paran&aacute;</option>
+                                    <option selected="selected" value="PE">Pernambuco</option>
+                                    <option  value="PI">Piau&iacute;</option>
+                                    <option  value="RJ">Rio de Janeiro</option>
+                                    <option  value="RN">Rio Grande do Norte</option>
+                                    <option  value="RS">Rio Grande do Sul</option>
+                                    <option  value="RO">Rond&ocirc;nia</option>
+                                    <option  value="RR">Roraima</option>
+                                    <option  value="SC">Santa Catarina</option>
+                                    <option  value="SP">S&atilde;o Paulo</option>
+                                    <option  value="SE">Sergipe</option>
+                                    <option  value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Complemento</label>
+                            <div class="cell-sm-10">
+                                <input type="text" data-role="input" class="input-small" id="complemento" name="complemento">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Coordenadas</label>
+                            <div class="cell-sm-10">
+                                <input type="text" data-role="input" class="input-small" id="coordenadas" name="coordenadas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" id="btnCadastrar" class="button primary">Cadastrar</button>
+        </div>
+    </div>
+    </form>
+</div>
+<script>
+    $(function (){
+        $("#btnCadastrar").click(function (){
+           let cpf = $("#cpf").val();
+            $.ajax({
+                url : "/clientes/verifica/cpf",
+                type : 'post',
+                data : {
+                    cpf : cpf,
+                },
+             })
+                .done(function(msg){
+                    if(msg > 0){
+                        $("#cpf").val("");
+                        $("#cpf").focus();
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'CPF já está cadastrado',
+                            text: 'Verifique e tente novamente'
+                        });
+                    }else{
+                        $("#formCadastro").submit();
+                    }
+                })
+                .fail(function(jqXHR, textStatus, msg){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Erro ao verificar CPF no banco de dados',
+                        text: msg
+                    });
+                });
+        });
+    });
+</script>
+</body>
+</html>

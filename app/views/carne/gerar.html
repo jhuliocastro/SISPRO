@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .row{
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+        <h4 style="text-align: center;">CARNÊ :: {{cliente}}</h4>
+        <div class="card" style="width: 800px;">
+            <form method="post" action="#" id="form">
+            <div class="card-content p-5">
+                {{titulos}}
+            </div>
+            <div class="card-footer">
+                <button type="button" id="btnImprimirCapa" class="button primary">Imprimir Capa</button>
+                <button type="button" id="btnImprimirCarne" class="button primary">Imprimir Carnê</button>
+            </div>
+            </form>
+        </div>
+</div>
+<script>
+    $("#btnImprimirCarne").click(function(){
+        let dadosForm = $("#form").serialize();
+        $.ajax({
+            url : "/carne/imprimir",
+            type : 'post',
+            data : {
+                dados : dadosForm
+            }
+        })
+            .done(function(msg){
+                console.log(msg);
+                window.open("/app/views/carne/dinamicos/titulo.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
+            });
+    });
+
+    $("#btnImprimirCapa").click(function(){
+        let cliente = "{{cliente}}";
+        $.ajax({
+            url : "/carne/capa",
+            type : 'post',
+            data : {
+                cliente : cliente
+            }
+        })
+            .done(function(msg){
+                console.log(msg);
+                window.open("/app/views/carne/dinamicos/capa.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
+            });
+    });
+</script>
+</body>
+</html>

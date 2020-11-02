@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .row{
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">CAIXA DIÁRIO :: INCLUIR LANÇAMENTO</h4>
+    <form autocomplete="off" method="post" action="/caixa/incluir">
+        <div class="card">
+            <div class="card-content p-5">
+                <fieldset class="fild">
+                    Dados
+                </fieldset>
+                <div class="row mb-2">
+                    <label class="cell-sm-1">Descrição</label>
+                    <div class="cell-sm-11">
+                        <input type="text" id="descricao" name="descricao" data-role="input" class="input-small" required>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <label class="cell-sm-1">Tipo Lançamento</label>
+                    <div class="cell-sm-11">
+                        <select data-role="select" data-filter="false" name="tipo" class="input-small">
+                            <option selected>Entrada</option>
+                            <option>Saída</option>
+                        </select>    
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="cell-sm-1">Valor</label>
+                    <div class="cell-sm-11">
+                        <input type="text" id="valor" name="valor" data-role="input" class="input-small" placeholder="R$ 00,00" required>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="button primary">Incluir</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $(function(){
+        $('#valor').mask('#.##0,00', {
+            reverse: true
+        });
+        $('#descricao').focus();
+    });
+    
+</script>
+</body>
+</html>

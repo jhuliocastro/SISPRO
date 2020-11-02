@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">CLIENTES :: ATIVADOS</h4>
+    <div class="card" style="padding: 5px;">
+        <div class="card-body">
+            <table class="display" id="tabela" style="width: 100%;">
+                <thead>
+                <tr>
+                    <th>Nome Completo</th>
+                    <th>Plano</th>
+                    <th>Data Cadastro</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {{tabela}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    var id;
+    var tabela = $('#tabela').DataTable({
+        dom: 'Bfrtip',
+        responsive: false,
+        paging: false,
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+        }
+    });
+</script>
+</body>
+</html>
