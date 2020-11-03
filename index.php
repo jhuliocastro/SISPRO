@@ -26,6 +26,7 @@ $router->get("/bloquear/sender/{id}", "Clientes:bloquearSender");
 $router->post("/verifica/cpf","Clientes:verificaCPF");
 $router->get("/desbloquear/{id}", "Clientes:desbloquear");
 $router->get("/desbloquear/sender/{id}", "Clientes:desbloquearSender");
+$router->get("/dados/{id}", "Clientes:dados");
 
 /*
  * FICHA FINANCEIRA
@@ -98,7 +99,7 @@ $router->get("/faturas/atrasadas", "FichaFinanceira:faturasAtrasadas");
 $router->get("/conexoes", "ConexoesAcesso:conexoes");
 
 /*
- * FORNCEDORES
+ * FORNECEDORES
  */
 $router->group("fornecedores");
 $router->get("/cadastrar", "Fornecedores:cadastrar");

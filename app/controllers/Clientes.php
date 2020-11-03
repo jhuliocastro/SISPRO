@@ -151,6 +151,25 @@ class Clientes extends Controller
         }
     }
 
+    public function dados($data){
+        $idCliente = $data["id"];
+        $clientes = new ClientesModel();
+        $dadosCliente = $clientes->find("id=:id", "id=$idCliente")->fetch();
+        parent::render("clientes", "dados", [
+            "nome" => $dadosCliente->nomeCompleto,
+            "endereco" => $dadosCliente->endereco.", ".$dadosCliente->numero,
+            "bairro" => $dadosCliente->bairro,
+            "cidade" => $dadosCliente->cidade,
+            "vencimento" => $dadosCliente->dataVencimento,
+            "dataCadastro" => date("d/m/Y", strtotime($dadosCliente->dataCadastro)),
+            "email" => $dadosCliente->email,
+            "cpf" => $dadosCliente->cpf,
+            "usuario" => $dadosCliente->usuario,
+            "senha" => $dadosCliente->senha,
+            "plano" => $dadosCliente->plano
+        ]);
+    }
+
     public function ativados(){
         $clientes = new ClientesModel();
         $dados = $clientes->ativados();
@@ -169,7 +188,7 @@ class Clientes extends Controller
                 <td>$data</td>
                 <td>
                     <a data-role='hint' data-hint-text='Editar' href='/clientes/editar/$d->id'><img class='img-tabela' src='/src/img/editar.png'></a>
-                    <a data-role='hint' data-hint-text='Dados' href='/planos/editar/$d->id'><img class='img-tabela' src='/src/img/detalhes.png'></a>
+                    <a data-role='hint' data-hint-text='Dados' href='#' onClick='dados($d->id)'><img class='img-tabela' src='/src/img/detalhes.png'></a>
                     $bd
                 </td>
             </tr>

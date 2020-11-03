@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="iso-8859-1">
+<title>SISPRO</title>
+
+<link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAAAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAD///////////////////////////v7+//u7u7/2tra/8zMzP/X19f/6urq//z8/P///////////////////////////////////////v7+/+rq6v94eHj/l5eX/87Ozv/ExMT/v7+//7m5uf+9vb3/1tbW//7+/v///////////////////////v7+/+Hh4f/Q0ND/Xl5e/0RERP+pqan/wsLC/8TExP/Hx8f/wMDA/0RERP+vr6///v7+/////////////////+vr6//V1dX/zMzM/2hoaP9ra2v/ioqK/9XV1f/a2tr/29vb/9fX1/9ZWVn/Pj4+/8vLy/////////////n5+f/h4eH/6Ojo/52dnf+Dg4P/k5OT/7a2tv/l5eX/7e3t//Dw8P/r6+v/c3Nz/1ZWVv+IiIj/9vb2///////u7u7/3Nzc/7y8vP+6urr/tbW1/7e3t//Gxsb/xsbG/8bGxv/FxcX/xMTE/6+vr/+Ghob/R0dH/8nJyf/+/v7/6Ojo/7i4uP/x8fH/7+/v/+7u7v/29vb/+fn5/+/v7//p6en/9PT0//f39//39/f/19fX/3V1df+kpKT//f39/8XFxf92dnb/8fHx/5WVlf+Tk5P/urq6/97e3v+ampr/v7+//6Wlpf/IyMj/vLy8/+3t7f9ycnL/goKC//z8/P97e3v/ZWVl//Hx8f/u7u7/5ubm/+/v7///////6urq//Ly8v/i4uL/6enp//Ly8v/m5ub/YWFh/4KCgv/+/v7/kJCQ/2FhYf/T09P/5ubm/+bm5v/m5ub/5ubm/+bm5v/m5ub/5ubm/+bm5v/m5ub/sLCw/3l5ef+qqqr//////8fHx/9ZWVn/dXV1/66urv+xsbH/vr6+/9ra2v/a2tr/2tra/9PT0/+4uLj/o6Oj/2FhYf8+Pj7/39/f///////5+fn/hISE/4eHh//r6+v/3Nzc/+3t7f/19fX/9/f3//f39//w8PD/7e3t/+Hh4f9zc3P/gYGB//7+/v///////////+Li4v+MjIz/5eXl/+3t7f/u7u7/5eXl//Hx8f/z8/P/+fn5//j4+P/k5OT/enp6/+7u7v//////////////////////4+Pj/8zMzP/u7u7/+vr6/+/v7//r6+v/9vb2///////9/f3/39/f/+jo6P/////////////////////////////////19fX/0NDQ/9zc3P/U1NT/29vb/+Dg4P/r6+v/7e3t//r6+v/////////////////////////////////////////////////8/Pz/8PDw/+Xl5f/z8/P//f39////////////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGJhemVs" />
+
+<link href="/src/dadosCliente/mk-auth.css" rel="stylesheet" type="text/css" />
+<link href="/src/dadosCliente/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="/src/dadosCliente/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<section class="hero is-small is-dark">
+<div class="hero-body">
+<div class="container">
+<p class="title"> Dados do cliente </p>
+<p class="subtitle">{{nome}}</p>
+</div>
+</div>
+</section>
+
+<table class="table is-fullwidth">
+<tr class="is-selected">
+<td colspan="4"><strong> Dados pessoais  do cliente </strong></td>
+</tr>
+
+<tr>
+<td colspan="4"><font style="font-family: open-sans; font-size:12px">informacoes pessoais do cliente</font></td>
+</tr>
+
+<tr>
+<td width="15%"><strong>Nome:</strong></td>
+<td width="40%">{{nome}}</td>
+<td width="15%"><strong>Endereco:</strong></td>
+<td width="40%">{{endereco}}</td>
+</tr>
+
+<tr>
+<td><strong>CPF:</strong></td>
+<td>{{cpf}}</td>
+<td><strong>Bairro:</strong></td>
+<td>{{bairro}}</td>
+</tr>
+
+<tr>
+<td><strong>E-Mail:</strong></td>
+<td>{{email}}</td>
+<td><strong>Cidade:</strong></td>
+<td>{{cidade}}</td>
+</tr>
+
+<tr>
+<td><strong>Celular:</strong></td>
+<td>{{celular}}</td>
+<td><strong>Vencimento:</strong></td>
+<td>{{vencimento}}</td>
+</tr>
+
+<tr>
+<td><strong>Cadastro:</strong></td>
+<td>{{dataCadastro}}</td>
+<td><strong>Grupo:</strong></td>
+<td>outros</td>
+</tr>
+
+</table>
+
+<table class="table is-fullwidth">
+<tr class="is-selected">
+<td colspan="4"><strong> Dados de acesso do cliente </strong></td>
+</tr>
+
+<tr>
+<td colspan="4"><font style="font-family: open-sans; font-size:12px">informacoes de acesso do cliente</font></td>
+</tr>
+
+<tr>
+<td width="15%" nowrap="nowrap"><strong>Login / Senha:</strong></td>
+<td width="40%">{{usuario}} / {{senha}}</td>
+<td width="15%"><strong>Tipo:</strong></td>
+<td width="40%">pppoe</td>
+</tr>
+
+<tr>
+    <td width="15%" nowrap="nowrap"><strong>Plano:</strong></td>
+    <td width="40%">{{plano}}</td>
+</tr>
+
+</table>
+
+</body>
+</html>
