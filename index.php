@@ -102,6 +102,15 @@ $router->get("/conexoes", "ConexoesAcesso:conexoes");
  */
 $router->group("fornecedores");
 $router->get("/cadastrar", "Fornecedores:cadastrar");
+$router->post("/cadastrar", "Fornecedores:cadastrarSender");
+$router->get("/relacao", "Fornecedores:relacao");
+
+/*
+ * CEPs
+ */
+$router->group("cep");
+$router->post("/pesquisar", "CEP:pesquisar");
+ 
 
 /*
  * CAIXA DIÁRIO
