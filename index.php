@@ -105,6 +105,7 @@ $router->group("fornecedores");
 $router->get("/cadastrar", "Fornecedores:cadastrar");
 $router->post("/cadastrar", "Fornecedores:cadastrarSender");
 $router->get("/relacao", "Fornecedores:relacao");
+$router->get("/dados/{id}", "Fornecedores:dados");
 
 /*
  * CEPs
