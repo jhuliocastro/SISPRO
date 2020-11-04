@@ -106,6 +106,10 @@ $router->get("/cadastrar", "Fornecedores:cadastrar");
 $router->post("/cadastrar", "Fornecedores:cadastrarSender");
 $router->get("/relacao", "Fornecedores:relacao");
 $router->get("/dados/{id}", "Fornecedores:dados");
+$router->get("/editar/{id}", "Fornecedores:editar");
+$router->post("/editar", "Fornecedores:editarSender");
+$router->get("/excluir/{id}", "Fornecedores:excluir");
+$router->get("/excluir/sender/{id}", "Fornecedores:excluirSender");
 
 /*
  * CEPs
