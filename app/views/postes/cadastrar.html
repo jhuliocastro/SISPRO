@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .row{
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">POSTES :: CADASTRAR</h4>
+    <form autocomplete="off" method="post" action="/ftth/postes/cadastrar">
+            <div class="card">
+                <div class="card-content p-5">
+                    <fieldset class="fild">
+                        Dados
+                    </fieldset>
+                    <div class="row mb-2">
+                        <label class="cell-sm-1">Identificação</label>
+                        <div class="cell-sm-11">
+                            <input type="text" name="identificacao" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-1">Longitude</label>
+                        <div class="cell-sm-11">
+                            <input type="text" name="latitude" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-1">Latitude</label>
+                        <div class="cell-sm-11">
+                            <input type="text" name="longitude" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="button primary">Cadastrar</button>
+                </div>
+            </div>
+    </form>
+</div>
+</body>
+</html>

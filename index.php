@@ -115,6 +115,13 @@ $router->get("/excluir/sender/{id}", "Fornecedores:excluirSender");
  * FTTH
  */
 $router->group("ftth");
+$router->get("/postes", "Postes:home");
+$router->get("/postes/cadastrar", "Postes:cadastrar");
+$router->post("/postes/cadastrar", "Postes:cadastrarSender");
+$router->get("/postes/editar/{id}", "Postes:editar");
+$router->post("/postes/editar", "Postes:editarSender");
+$router->get("/postes/excluir/{id}", "Postes:excluir");
+$router->get("/postes/excluir/sender/{id}", "Postes:excluirSender");
 $router->get("/caixa/emenda/cadastrar", "CaixaEmenda:cadastrar");
 
 /*
