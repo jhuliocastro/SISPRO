@@ -112,6 +112,12 @@ $router->get("/excluir/{id}", "Fornecedores:excluir");
 $router->get("/excluir/sender/{id}", "Fornecedores:excluirSender");
 
 /*
+ * FTTH
+ */
+$router->group("ftth");
+$router->get("/caixa/emenda/cadastrar", "CaixaEmenda:cadastrar");
+
+/*
  * CEPs
  */
 $router->group("cep");

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .row{
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">CAIXA DE EMENDA :: CADASTRAR</h4>
+    <form autocomplete="off" method="post" action="/planos/cadastrar">
+            <div class="card">
+                <div class="card-content p-5">
+                    <fieldset class="fild">
+                        Dados
+                    </fieldset>
+                    <div class="row mb-2">
+                        <label class="cell-sm-1">Identificação</label>
+                        <div class="cell-sm-11">
+                            <input type="text" name="nome" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-1">Longitude</label>
+                        <div class="cell-sm-11">
+                            <input type="text" name="download" data-role="input" class="input-small" placeholder="kbps" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-1">Latitude</label>
+                        <div class="cell-sm-11">
+                            <input type="text" name="upload" data-role="input" class="input-small" placeholder="kbps" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-1">Pool</label>
+                        <div class="cell-sm-11">
+                            <select id="pool" name="pool" data-filter="false" data-role="select" class="input-small">{{pools}}</select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="cell-sm-1">Valor</label>
+                        <div class="cell-sm-11">
+                            <input type="text" name="valor" data-role="input" class="input-small" placeholder="R$ 00,00" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="button primary">Cadastrar</button>
+                </div>
+            </div>
+    </form>
+</div>
+</body>
+</html>
