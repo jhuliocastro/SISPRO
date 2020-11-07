@@ -27,6 +27,12 @@ class Controller
         ));
     }
 
+    public function erros(){
+        ini_set('display_errors',1);
+        ini_set('display_startup_erros',1);
+        error_reporting(E_ALL);
+    }
+
     public function alertaQuestion(string $titulo, string $mensagem, string $acaoSim, string $acaoNao){
         $this->render("", "alerta2", array(
             "titulo" => $titulo,
