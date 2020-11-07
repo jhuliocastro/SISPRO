@@ -22,6 +22,19 @@ class GalaxPay{
         return $resposta;
     }
 
+    public function cancelar($id){
+        $dados = [
+            "Auth" => [
+                "galaxId" => $this->galaxID,
+                "galaxHash" => $this->galaxHash
+            ],
+            "Request" => [
+                "paymentBillIntegrationId" => $id
+            ]
+        ];
+        return self::enviar($dados, "cancelPaymentBill");
+    }
+
     public function pesquisarCliente($cpf){
         $array = [
             "Auth" => [
