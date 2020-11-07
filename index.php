@@ -125,6 +125,8 @@ $router->get("/postes/excluir/sender/{id}", "Postes:excluirSender");
 $router->get("/caixa/emenda/cadastrar", "CaixaEmenda:cadastrar");
 $router->post("/caixa/emenda/cadastrar", "CaixaEmenda:cadastrarSender");
 $router->get("/caixa/emenda", "CaixaEmenda:home");
+$router->get("/caixa/emenda/excluir/{id}", "CaixaEmenda:excluir");
+$router->get("/caixa/emenda/excluir/sender/{id}", "CaixaEmenda:excluirSender");
 
 /*
  * CEPs

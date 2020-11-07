@@ -9,6 +9,18 @@ class CaixaEmendaModel extends DataLayer{
         parent::__construct('caixa_emenda', [], 'id', true, 'interno');
     }
 
+    public function lista(){
+        return $this->find()->fetch(true);
+    }
+
+    public function dados($id){
+        return $this->findById($id);
+    }
+
+    public function excluir($id){
+        return ($this->findById($id))->destroy();
+    }
+
     public function cadastrar($dados){        
         $dados = (object) $dados;
 
