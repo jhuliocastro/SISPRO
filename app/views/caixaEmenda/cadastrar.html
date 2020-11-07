@@ -23,7 +23,7 @@
 </br>
 <div class="container">
     <h4 style="text-align: center;">CAIXA DE EMENDA :: CADASTRAR</h4>
-    <form autocomplete="off" method="post" action="/planos/cadastrar">
+    <form autocomplete="off" method="post" action="/ftth/caixa/emenda/cadastrar">
             <div class="card">
                 <div class="card-content p-5">
                     <fieldset class="fild">
@@ -32,31 +32,25 @@
                     <div class="row mb-2">
                         <label class="cell-sm-1">Identificação</label>
                         <div class="cell-sm-11">
-                            <input type="text" name="nome" data-role="input" class="input-small" required>
+                            <input type="text" name="identificacao" data-role="input" class="input-small" required>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <label class="cell-sm-1">Longitude</label>
                         <div class="cell-sm-11">
-                            <input type="text" name="download" data-role="input" class="input-small" placeholder="kbps" required>
+                            <input type="text" name="longitude" data-role="input" class="input-small" required>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <label class="cell-sm-1">Latitude</label>
                         <div class="cell-sm-11">
-                            <input type="text" name="upload" data-role="input" class="input-small" placeholder="kbps" required>
+                            <input type="text" name="latitude" data-role="input" class="input-small" required>
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <label class="cell-sm-1">Pool</label>
+                        <label class="cell-sm-1">Poste</label>
                         <div class="cell-sm-11">
-                            <select id="pool" name="pool" data-filter="false" data-role="select" class="input-small">{{pools}}</select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="cell-sm-1">Valor</label>
-                        <div class="cell-sm-11">
-                            <input type="text" name="valor" data-role="input" class="input-small" placeholder="R$ 00,00" required>
+                            <select id="poste" name="poste" data-filter="true" data-role="select" class="input-small">{{postes}}</select>
                         </div>
                     </div>
                 </div>
