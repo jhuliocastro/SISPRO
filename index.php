@@ -40,6 +40,8 @@ $router->post("/cadastrar/titulos", "FichaFinanceira:cadastrarTitulosSender");
 $router->get("/recibo/{id}", "FichaFinanceira:recibo");
 $router->get("/receber/{id}", "FichaFinanceira:receber");
 $router->post("/receber", "FichaFinanceira:receberSender");
+$router->get("/excluir/{id}/{cliente}", "FichaFinanceira:excluir");
+$router->get("/excluir/sender/{id}/{cliente}", "FichaFinanceira:excluirSender");
 
 /*
  * CARNÊS

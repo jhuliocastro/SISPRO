@@ -8,4 +8,12 @@ class FinanceiroModel extends DataLayer{
     {
         parent::__construct('financeiro', [], 'id', true, 'interno');
     }
+
+    public function excluir($id){
+        return $this->findById($id)->destroy();
+    }
+
+    public function dados($id){
+        return $this->findById($id);
+    }
 }

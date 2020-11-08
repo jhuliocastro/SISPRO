@@ -357,6 +357,7 @@ class FichaFinanceira extends Controller{
                 $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa' href='#'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Recibo' href='/ficha/recibo/$d->id'><img src='/src/img/recibo.png' class='img-tabela'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Receber' href='#'><img src='/src/img/receber.png' class='img-tabela opcaoDesativada'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Excluir' href='#'><img src='/src/img/excluir.png' class='img-tabela opcaoDesativada'></a>";
             }else{
                 if($d->remessa == "APROVADO" || $d->remessa == "ENVIADO"){
                     $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa' href='#'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
@@ -369,6 +370,7 @@ class FichaFinanceira extends Controller{
                 }
                 $opcoes .= "<a data-role='hint' data-hint-text='Recibo' href='#'><img src='/src/img/recibo.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Receber' href='/ficha/receber/$d->id'><img src='/src/img/receber.png' class='img-tabela'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Excluir' href='/ficha/excluir/$d->id/$cliente'><img src='/src/img/excluir.png' class='img-tabela'></a>";
             }
             switch ($d->remessa){
                 case 'ENVIADO':
@@ -398,6 +400,29 @@ class FichaFinanceira extends Controller{
             ";
         }
         return $tabela;
+    }
+
+    public function excluir($data){
+        $cliente = $data["cliente"];
+        $id = $data["id"];
+        parent::alertaQuestion("Confirma Exclusão do Título?", "Essa ação não tem volta", "/ficha/excluir/sender/$id/$cliente", "/ficha/cliente/$cliente");
+    }
+
+    public function excluirSender($data){
+        $cliente = $data["cliente"];
+        $fi = new FinanceiroModel();
+        $dados = $fi->dados($data["id"]);
+        if($dados->remessa == "APROVADO"){
+            $galax = new GalaxPay();
+            $galax->cancelar($dados->idIntegracao);
+        }
+        $financeiro = new FinanceiroModel();
+        $retorno = $financeiro->excluir($data["id"]);
+        if($retorno == false){
+            parent::alerta("error", "Erro ao excluir título", "Contate o administrador do sistema", "/ficha/cliente/$cliente");
+            die();
+        }
+        parent::alerta("success", "Título excluído com sucesso!", "", "/ficha/cliente/$cliente");
     }
 
     private static function valorPago(string $cliente){
