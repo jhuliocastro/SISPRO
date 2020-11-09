@@ -357,6 +357,7 @@ class FichaFinanceira extends Controller{
                 $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa' href='#'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Recibo' href='/ficha/recibo/$d->id'><img src='/src/img/recibo.png' class='img-tabela'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Receber' href='#'><img src='/src/img/receber.png' class='img-tabela opcaoDesativada'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Estornar' href='/ficha/estorno/$d->id/$cliente'><img src='/src/img/estorno.png' class='img-tabela'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Excluir' href='#'><img src='/src/img/excluir.png' class='img-tabela opcaoDesativada'></a>";
             }else{
                 if($d->remessa == "APROVADO" || $d->remessa == "ENVIADO"){
@@ -370,6 +371,7 @@ class FichaFinanceira extends Controller{
                 }
                 $opcoes .= "<a data-role='hint' data-hint-text='Recibo' href='#'><img src='/src/img/recibo.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Receber' href='/ficha/receber/$d->id'><img src='/src/img/receber.png' class='img-tabela'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Estornar' href='#'><img src='/src/img/estorno.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Excluir' href='/ficha/excluir/$d->id/$cliente'><img src='/src/img/excluir.png' class='img-tabela'></a>";
             }
             switch ($d->remessa){
@@ -423,6 +425,20 @@ class FichaFinanceira extends Controller{
             die();
         }
         parent::alerta("success", "Título excluído com sucesso!", "", "/ficha/cliente/$cliente");
+    }
+
+    public function estorno($data){
+        parent::alertaQuestion("Confirma estorno do título?", $data["id"], "/ficha/estorno/sender/".$data["id"]."/".$data["cliente"], "/ficha/cliente/".$data["cliente"]);
+    }
+
+    public function estornoSender($data){
+        $financeiro = new FinanceiroModel();
+        $retorno = $financeiro->estorno($data["id"]);
+        if($retorno != true){
+            parent::alerta("error", "Erro ao estornar título", "Contate o administrador do sistema", "/ficha/cliente/".$data["cliente"]);
+        }else{
+            parent::alerta("success", "Título estornado com sucesso", "", "/ficha/cliente/".$data["cliente"]);
+        }
     }
 
     private static function valorPago(string $cliente){

@@ -16,4 +16,25 @@ class FinanceiroModel extends DataLayer{
     public function dados($id){
         return $this->findById($id);
     }
+
+    public function estorno($id){
+        $f = (new FinanceiroModel())->findById($id); 
+        $f->status = "EM ABERTO";
+        $f->juros = "";
+        $f->desconto = "";
+        $f->valorPago = "";
+        $f->formaPagamento = "";
+        $f->coletor = "";
+        $f->favorecido = "";
+        $f->nossoNumero = "";
+        $f->idIntegracao = "";
+        $f->codigoBarras = "";
+        $f->remessa = "";
+        $f->change()->save();
+        if($f->fail()){
+            return $f->fail()->getMessage();
+        }else{
+            return true;
+        }
+    }
 }
