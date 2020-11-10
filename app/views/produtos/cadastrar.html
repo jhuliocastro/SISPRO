@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .row{
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">PRODUTOS :: CADASTRAR</h4>
+    <form autocomplete="off" method="post" action="/produtos/cadastrar">
+            <div class="card">
+                <div class="card-content p-5">
+                    <fieldset class="fild">
+                        Dados
+                    </fieldset>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Razão Social</label>
+                        <div class="cell-sm-10">
+                            <input type="text" name="razaoSocial" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Nome Fantasia</label>
+                        <div class="cell-sm-10">
+                            <input type="text" name="nomeFantasia" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">CPF/CNPJ</label>
+                        <div class="cell-sm-10">
+                            <input type="text" name="cpfCnpj" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">RG/IE</label>
+                        <div class="cell-sm-10">
+                            <input type="text" name="rgIE" data-role="input" class="input-small">
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Email</label>
+                        <div class="cell-sm-10">
+                            <input type="text" name="email" data-role="input" class="input-small">
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Telefone</label>
+                        <div class="cell-sm-10">
+                            <input type="text" name="telefone" data-role="input" class="input-small">
+                        </div>
+                    </div>
+                    <br/>
+                    <fieldset class="fild">
+                        Endereço
+                    </fieldset>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">CEP</label>
+                        <div class="cell-sm-10">
+                            <input id="cep" type="text" name="cep" data-role="input" class="input-small" required 
+                                data-search-button="true"
+                                data-search-button-click="custom"
+                                data-on-search-button-click="pesquisaCEP"
+                            >
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Endereço</label>
+                        <div class="cell-sm-10">
+                            <input type="text" id="endereco" name="endereco" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Número</label>
+                        <div class="cell-sm-10">
+                            <input type="text" id="numero" name="numero" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Bairro</label>
+                        <div class="cell-sm-10">
+                            <input type="text" id="bairro" name="bairro" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Cidade</label>
+                        <div class="cell-sm-10">
+                            <input type="text" id="cidade" name="cidade" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Estado</label>
+                        <div class="cell-sm-10">
+                            <input type="text" id="estado" name="estado" data-role="input" class="input-small" required>
+                        </div>
+                    </div>
+                    <br/>
+                    <fieldset class="fild">
+                        Outros Detalhes
+                    </fieldset>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Observações</label>
+                        <div class="cell-sm-10">
+                            <textarea data-role="textarea" name="observacoes"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="button primary">Cadastrar</button>
+                </div>
+            </div>
+    </form>
+</div>
+<script>
+    function pesquisaCEP(){
+        let cep = $("#cep").val();
+        $.ajax({
+            url : "/cep/pesquisar",
+            type : 'post',
+            data : {
+                cep : cep
+            },
+            dataType: 'JSON',
+            beforeSend : function(){
+                Metro.notify.create("Carregando Dados", "Aguarde", {});
+                $("#cidade").val("Aguarde...");
+                $("#endereco").val("Aguarde...");
+                $("#bairro").val("Aguarde...");
+                $("#estado").val("Aguarde...");
+
+                $("#cidade").attr('readonly', true);
+                $("#endereco").attr('readonly', true);
+                $("#bairro").attr('readonly', true);
+                $("#estado").attr('readonly', true);
+            }
+        })
+        .done(function(data){
+            if(data.error != ""){
+                $("#cidade").attr('readonly', false);
+                $("#endereco").attr('readonly', false);
+                $("#bairro").attr('readonly', false);
+                $("#estado").attr('readonly', false);
+
+                $("#cidade").val("");
+                $("#endereco").val("");
+                $("#bairro").val("");
+                $("#estado").val("");
+
+                Metro.notify.create("Cep não encontrado", "Erro", {});
+            }
+
+            $("#cidade").val(data.city);
+            $("#bairro").val(data.district);
+            $("#endereco").val(data.street);
+            $("#estado").val(data.uf);
+            console.log(data);
+        })
+        .fail(function(jqXHR, textStatus, msg){
+            $("#cidade").attr('readonly', false);
+            $("#endereco").attr('readonly', false);
+            $("#bairro").attr('readonly', false);
+            $("#estado").attr('readonly', false);
+
+            $("#cidade").val("");
+            $("#endereco").val("");
+            $("#bairro").val("");
+            $("#estado").val("");
+
+            Metro.notify.create("Falha ao carregar dados", "Erro", {});
+            alert(msg);
+        });
+    }
+</script>
+</body>
+</html>
