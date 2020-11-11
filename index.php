@@ -120,6 +120,12 @@ $router->get("/excluir/sender/{id}", "Fornecedores:excluirSender");
  */
 $router->group("produtos");
 $router->get("/cadastrar", "Produtos:cadastrar");
+$router->post("/cadastrar", "Produtos:cadastrarSender");
+$router->get("/relacao", "Produtos:relacao");
+$router->get("/excluir/{id}/{nome}", "Produtos:excluir");
+$router->get("/excluir/sender/{id}", "Produtos:excluirSender");
+$router->get("/editar/{id}", "Produtos:editar");
+$router->post("/editar", "Produtos:editarSender");
 
 /*
  * FTTH

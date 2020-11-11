@@ -22,8 +22,8 @@
 {{menu}}
 </br>
 <div class="container">
-    <h4 style="text-align: center;">PRODUTOS :: CADASTRAR</h4>
-    <form autocomplete="off" method="post" action="/produtos/cadastrar">
+    <h4 style="text-align: center;">PRODUTOS :: EDITAR :: {{nome}}</h4>
+    <form autocomplete="off" method="post" action="/produtos/editar">
             <div class="card">
                 <div class="card-content p-5">
                     <fieldset class="fild">
@@ -32,33 +32,34 @@
                     <div class="row mb-2">
                         <label class="cell-sm-2">Nome</label>
                         <div class="cell-sm-10">
-                            <input type="text" name="nome" data-role="input" class="input-small" required>
+                            <input type="text" name="nome" value="{{nome}}" data-role="input" class="input-small" required>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <label class="cell-sm-2">Quantidade</label>
                         <div class="cell-sm-2">
-                            <input type="text" name="quantidade" data-role="spinner" data-min-value="0" class="input-small" required>
+                            <input type="text" name="quantidade" value="{{quantidade}}" data-role="spinner" data-min-value="0" class="input-small" required>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <label class="cell-sm-2">Quantidade Mínima</label>
                         <div class="cell-sm-2">
-                            <input type="text" name="quantidadeMinima" data-role="spinner" data-min-value="0" class="input-small" required>
+                            <input type="text" name="quantidadeMinima" value="{{quantidadeMinima}}" data-role="spinner" data-min-value="0" class="input-small" required>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <label class="cell-sm-2">Valor</label>
                         <div class="cell-sm-2">
-                            <input type="text" name="valor" data-role="input" class="input-small">
+                            <input type="text" name="valor" value="{{valor}}" data-role="input" class="input-small">
                         </div>
                     </div>
                     <div class="row mb-2">
                         <label class="cell-sm-2">Descrição</label>
                         <div class="cell-sm-10">
-                            <textarea data-role="textarea" name="descricao"></textarea>
+                            <textarea data-role="textarea" name="descricao">{{descricao}}</textarea>
                         </div>
                     </div>
+                    <input type="hidden" name="id" value="{{id}}">
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="button primary">Cadastrar</button>
