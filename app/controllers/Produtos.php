@@ -128,6 +128,28 @@ class Produtos extends Controller{
         }
     }
 
+    public function historico(){
+        $historico = new HistoricoEstoqueModel();
+        $dados = $historico->lista();
+        $tabela = null;
+        foreach($dados as $d){
+            $data = date("d/m/Y H:m:i", strtotime($d->created_at));
+            $tabela .= "
+            <tr>
+                <td>$d->id</td>
+                <td>$d->produto</td>
+                <td>$d->quantidade</td>
+                <td>$data</td>
+                <td>$d->tipo</td>
+                <td>$d->descricao</td>
+            </tr>
+            ";
+        }
+        parent::render("produtos", "historico", [
+            "tabela" => $tabela
+        ]);
+    }
+
     public function relacao(){
         $produtos = new ProdutosModel();
         $dados = $produtos->lista();

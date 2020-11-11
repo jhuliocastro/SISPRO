@@ -128,6 +128,7 @@ $router->get("/editar/{id}", "Produtos:editar");
 $router->post("/editar", "Produtos:editarSender");
 $router->get("/entrada", "Produtos:entrada");
 $router->post("/entrada", "Produtos:entradaSender");
+$router->get("/historico", "Produtos:historico");
 
 /*
  * FTTH
