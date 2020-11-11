@@ -117,7 +117,6 @@ class Fornecedores extends Controller{
     }
 
     public function cadastrarSender(){
-        var_dump($_POST);
         $dados = (object) $_POST;
         
         $fornecedores = new FornecedoresModel();
