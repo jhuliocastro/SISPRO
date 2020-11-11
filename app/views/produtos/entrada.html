@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .row{
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container">
+    <h4 style="text-align: center;">PRODUTOS :: ENTRADA</h4>
+    <form autocomplete="off" method="post" action="/produtos/entrada">
+            <div class="card">
+                <div class="card-content p-5">
+                    <fieldset class="fild">
+                        Dados
+                    </fieldset>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Produto</label>
+                        <div class="cell-sm-10">
+                            <select data-role="select" class="input-small" name="nome">{{produtos}}</select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Fornecedor</label>
+                        <div class="cell-sm-10">
+                            <select data-role="select" class="input-small" name="fornecedor">{{fornecedores}}</select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Quantidade</label>
+                        <div class="cell-sm-2">
+                            <input type="text" name="quantidade" data-role="spinner" data-min-value="0" class="input-small" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label class="cell-sm-2">Valor</label>
+                        <div class="cell-sm-2">
+                            <input type="text" name="valor" data-role="input" class="input-small">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="button primary">Cadastrar</button>
+                </div>
+            </div>
+    </form>
+</div>
+</body>
+</html>

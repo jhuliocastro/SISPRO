@@ -8,4 +8,8 @@ class FornecedoresModel extends DataLayer{
     {
         parent::__construct('fornecedores', [], 'id', true, 'interno');
     }
+
+    public function lista(){
+        return $this->find()->fetch(true);
+    }
 }

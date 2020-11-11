@@ -1,7 +1,9 @@
 <?php
 namespace Controllers;
 
+use Models\FornecedoresModel;
 use Models\ProdutosModel;
+use Models\HistoricoEstoqueModel;
 
 class Produtos extends Controller{
     public function __construct($router)
@@ -75,6 +77,54 @@ class Produtos extends Controller{
             parent::alerta("success", "ALTERAÇÕES SALVAS COM SUCESSO", "", "/produtos/relacao");
         }else{
             parent::alerta("error", "ERRO AO SALVAR ALTERAÇÕES", $retorno, "/produtos/relacao");
+        }
+    }
+
+    public function entrada(){
+        $produtos = new ProdutosModel();
+        $dados = $produtos->lista();
+        $listaProdutos = null;
+        foreach ($dados as $d){
+            $listaProdutos .= "
+                <option>$d->nome</option>
+            ";
+        }
+
+        $fornecedores = new FornecedoresModel();
+        $dados = $fornecedores->lista();
+        $listaFornecedores = null;
+        foreach ($dados as $d){
+            $listaFornecedores .= "
+                <option>$d->nomeFantasia</option>
+            ";
+        }
+
+        parent::render("produtos", "entrada", [
+            "produtos" => $listaProdutos,
+            "fornecedores" => $listaFornecedores
+        ]);
+    }
+
+    public function entradaSender(){
+        $produtos = new ProdutosModel();
+        $dadosProduto = $produtos->dadosNome($_POST["nome"]);
+        $retorno = $produtos->atualizaValor($_POST["nome"], $_POST["valor"]);
+        if($retorno == "ok"){
+            $p = new ProdutosModel();
+            $retorno = $p->atualizaQuantidade($_POST["nome"], $_POST["quantidade"], $dadosProduto->quantidade);
+            if($retorno == "ok"){
+                $historico = new HistoricoEstoqueModel();
+                $retorno = $historico->cadastrar($_POST["nome"], "ENTRADA MANUAL", "ENTRADA", $_POST["quantidade"]);
+                if($retorno == "ok"){
+                    parent::alerta("success", "ENTRADA DE PRODUTO CADASTRADA COM SUCESSO", "", "/produtos/relacao");
+                }else{
+                    parent::alerta("error", "ERRO AO PROCESSAR REQUISIÇÃO", $retorno, "/produtos/entrada");
+                }
+            }else{
+                parent::alerta("error", "ERRO AO PROCESSAR REQUISIÇÃO", $retorno, "/produtos/entrada");
+            }
+        }else{
+            parent::alerta("error", "ERRO AO PROCESSAR REQUISIÇÃO", $retorno, "/produtos/entrada");
         }
     }
 

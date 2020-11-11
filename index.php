@@ -126,6 +126,8 @@ $router->get("/excluir/{id}/{nome}", "Produtos:excluir");
 $router->get("/excluir/sender/{id}", "Produtos:excluirSender");
 $router->get("/editar/{id}", "Produtos:editar");
 $router->post("/editar", "Produtos:editarSender");
+$router->get("/entrada", "Produtos:entrada");
+$router->post("/entrada", "Produtos:entradaSender");
 
 /*
  * FTTH

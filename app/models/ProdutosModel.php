@@ -22,6 +22,33 @@ class ProdutosModel extends DataLayer
         return $this->findById($id);
     }
 
+    public function dadosNome($nome){
+        return $this->find("nome=:nome", "nome=$nome")->fetch();
+    }
+
+    public function atualizaValor($produto, $valor){
+        $query = ($this)->find("nome=:nome", "nome=$produto")->fetch();
+        $query->valorAntigo = $valor;
+        $query->change()->save();
+        if($query->fail()){
+            return $query->fail()->getMessage();
+        }else{
+            return "ok";
+        }
+    }
+
+    public function atualizaQuantidade($produto, $quantidadeNova, $quantidadeAtual){
+        $quantidade = $quantidadeAtual + $quantidadeNova;
+        $query = ($this)->find("nome=:nome", "nome=$produto")->fetch();
+        $query->quantidade = $quantidade;
+        $query->change()->save();
+        if($query->fail()){
+            return $query->fail()->getMessage();
+        }else{
+            return "ok";
+        }
+    }
+
     public function editar($dados){
         $dados = (object) $dados;
         $query = ($this)->findById($dados->id);
