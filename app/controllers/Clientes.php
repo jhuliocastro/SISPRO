@@ -22,6 +22,30 @@ class Clientes extends Controller
         ]);
     }
 
+    public function bloqueados(){
+        $clientes = new ClientesModel();
+        $dados = $clientes->bloqueados();
+        $tabela = null;
+        foreach($dados as $d){
+            $data = date("d/m/Y", strtotime($d->dataCadastro));
+            $tabela .= "
+            <tr>
+                <td>$d->nomeCompleto</td>
+                <td>$d->plano</td>
+                <td>$data</td>
+                <td>
+                    <a data-role='hint' data-hint-text='Editar' href='/clientes/editar/$d->id'><img class='img-tabela' src='/src/img/editar.png'></a>
+                    <a data-role='hint' data-hint-text='Dados' href='#' onClick='dados($d->id)'><img class='img-tabela' src='/src/img/detalhes.png'></a>
+                    <a data-role='hint' data-hint-text='Desbloquear' href='/clientes/desbloquear/$d->id'><img class='img-tabela' src='/src/img/desbloquear.png'></a>
+                </td>
+            </tr>
+            ";
+        }
+        parent::render("clientes", "bloqueados", [
+            "tabela" => $tabela
+        ]);
+    }
+
     public function verificaCPF(){
         $cpf = $_POST["cpf"];
         $clientes = new ClientesModel();

@@ -14,6 +14,10 @@ class ClientesModel extends DataLayer
         return $this->find()->order("nomeCompleto ASC")->fetch(true);
     }
 
+    public function bloqueados(){
+        return $this->find("bloqueado=:bloqueado", "bloqueado=1")->order("nomeCompleto ASC")->fetch(true);
+    }
+
     public function ativados(){
         return $this->find("ativo=:ativo", "ativo=1")->order("nomeCompleto ASC")->fetch(true);
     }
