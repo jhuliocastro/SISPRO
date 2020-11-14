@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use Models\CaixaEmendaModel;
+use Models\DiagramasSplitter;
 use Models\PostesModel;
 
 class CaixaEmenda extends Controller{
@@ -73,5 +74,25 @@ class CaixaEmenda extends Controller{
         }
     }
 
+    public function diagrama(){
+        $caixa = new CaixaEmendaModel();
+        $dados = $caixa->lista();
+        $lista = [];
+        foreach($dados as $d){
+            $lista[$d->identificacao] = "$d->identificacao";
+        }
+        parent::render("caixaEmenda", "selecionar", [
+            "opcoes" => json_encode($lista)
+        ]);
+    }
 
+    public function diagramaSender($data){
+        //SPLITTERS
+        $splitter = new DiagramasSplitter();
+        $splitters = $splitter->splitter($data["caixa"]);
+
+        parent::render("caixaEmenda", "diagrama", [
+            "caixa" => $data["caixa"]
+        ]);
+    }
 }

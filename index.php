@@ -146,6 +146,15 @@ $router->post("/caixa/emenda/cadastrar", "CaixaEmenda:cadastrarSender");
 $router->get("/caixa/emenda", "CaixaEmenda:home");
 $router->get("/caixa/emenda/excluir/{id}", "CaixaEmenda:excluir");
 $router->get("/caixa/emenda/excluir/sender/{id}", "CaixaEmenda:excluirSender");
+$router->get("/caixa/emenda/diagrama", "CaixaEmenda:diagrama");
+$router->get("/caixa/emenda/diagrama/{caixa}", "CaixaEmenda:diagramaSender");
+
+/*
+ * DIAGRAMAS
+ */
+$router->group("diagrama");
+$router->post("/backbone/existe", "Diagramas:backboneExiste");
+$router->post("/splitter/adicionar", "Diagramas:splitterCadastrar");
 
 /*
  * CEPs
