@@ -355,8 +355,9 @@ class FichaFinanceira extends Controller{
 
             if($d->status == "PAGO"){
                 $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa' href='#'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
-                $opcoes .= "<a data-role='hint' data-hint-text='Recibo' href='/ficha/recibo/$d->id'><img src='/src/img/recibo.png' class='img-tabela'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Recibo' style='cursor: pointer;' onclick='recibo($d->id)'><img src='/src/img/recibo.png' class='img-tabela'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Receber' href='#'><img src='/src/img/receber.png' class='img-tabela opcaoDesativada'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Boleto' href='#'><img src='/src/img/boleto.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Estornar' href='/ficha/estorno/$d->id/$cliente'><img src='/src/img/estorno.png' class='img-tabela'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Excluir' href='#'><img src='/src/img/excluir.png' class='img-tabela opcaoDesativada'></a>";
             }else{
@@ -369,7 +370,7 @@ class FichaFinanceira extends Controller{
                         $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa' href='#'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
                     }
                 }
-                $opcoes .= "<a data-role='hint' data-hint-text='Recibo' href='#'><img src='/src/img/recibo.png' class='img-tabela opcaoDesativada'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Recibo' style='cursor: not-allowed;'><img src='/src/img/recibo.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Receber' href='/ficha/receber/$d->id'><img src='/src/img/receber.png' class='img-tabela'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Estornar' href='#'><img src='/src/img/estorno.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Excluir' href='/ficha/excluir/$d->id/$cliente'><img src='/src/img/excluir.png' class='img-tabela'></a>";

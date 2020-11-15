@@ -105,6 +105,7 @@
                     window.open("/app/views/fichaFinanceira/dinamicos/recibo.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
                 })
                 .fail(function(jqXHR, textStatus, msg){
+                    desloader();
                     alert(msg);
                 });
         }
