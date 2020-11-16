@@ -9,6 +9,9 @@ use Models\StatusRemessa;
 use Models\StatusBaixa;
 
 class FichaFinanceira extends Controller{
+
+    private $codigoBarras;
+
     public function __construct($router)
     {
         $this->router = $router;
@@ -354,25 +357,30 @@ class FichaFinanceira extends Controller{
             $opcoes = null;
 
             if($d->status == "PAGO"){
-                $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa' href='#'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa' style='cursor: pointer;'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Recibo' style='cursor: pointer;' onclick='recibo($d->id)'><img src='/src/img/recibo.png' class='img-tabela'></a>";
-                $opcoes .= "<a data-role='hint' data-hint-text='Receber' href='#'><img src='/src/img/receber.png' class='img-tabela opcaoDesativada'></a>";
-                $opcoes .= "<a data-role='hint' data-hint-text='Boleto' href='#'><img src='/src/img/boleto.png' class='img-tabela opcaoDesativada'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Receber'><img src='/src/img/receber.png' class='img-tabela opcaoDesativada'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Boleto'><img src='/src/img/boleto.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Estornar' href='/ficha/estorno/$d->id/$cliente'><img src='/src/img/estorno.png' class='img-tabela'></a>";
-                $opcoes .= "<a data-role='hint' data-hint-text='Excluir' href='#'><img src='/src/img/excluir.png' class='img-tabela opcaoDesativada'></a>";
+                $opcoes .= "<a data-role='hint' data-hint-text='Excluir'><img src='/src/img/excluir.png' class='img-tabela opcaoDesativada'></a>";
             }else{
                 if($d->remessa == "APROVADO" || $d->remessa == "ENVIADO"){
-                    $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa' href='#'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
+                    $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
                 }else{
                     if($d->nossoNumero == ""){
                         $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa' href='/ficha/enviar/remessa/$d->cliente/$d->id'><img src='/src/img/enviar.png' class='img-tabela'></a>";
                     }else{
-                        $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa' href='#'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
+                        $opcoes .= "<a data-role='hint' data-hint-text='Enviar Remessa'><img src='/src/img/enviar.png' class='img-tabela opcaoDesativada'></a>";
                     }
                 }
                 $opcoes .= "<a data-role='hint' data-hint-text='Recibo' style='cursor: not-allowed;'><img src='/src/img/recibo.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Receber' href='/ficha/receber/$d->id'><img src='/src/img/receber.png' class='img-tabela'></a>";
-                $opcoes .= "<a data-role='hint' data-hint-text='Estornar' href='#'><img src='/src/img/estorno.png' class='img-tabela opcaoDesativada'></a>";
+                if($d->nossoNumero == ""){
+                    $opcoes .= "<a data-role='hint' data-hint-text='Boleto'><img src='/src/img/boleto.png' class='img-tabela opcaoDesativada'></a>";
+                }else{
+                    $opcoes .= "<a data-role='hint' data-hint-text='Boleto' style='cursor:pointer;' onclick='boleto($d->id)'><img src='/src/img/boleto.png' class='img-tabela'></a>";
+                }
+                $opcoes .= "<a data-role='hint' data-hint-text='Estornar'><img src='/src/img/estorno.png' class='img-tabela opcaoDesativada'></a>";
                 $opcoes .= "<a data-role='hint' data-hint-text='Excluir' href='/ficha/excluir/$d->id/$cliente'><img src='/src/img/excluir.png' class='img-tabela'></a>";
             }
             switch ($d->remessa){
@@ -403,6 +411,131 @@ class FichaFinanceira extends Controller{
             ";
         }
         return $tabela;
+    }
+
+    public function boleto($data){
+        $id = $data["id"];
+        $financeiro = new FinanceiroModel();
+        $dadosBoleto = $financeiro->findById($id);
+
+        self::codigo($dadosBoleto->codigoBarras);
+
+        $clientes = new ClientesModel();
+        $dadosCliente = $clientes->dadosNome($dadosBoleto->cliente);
+
+        $boleto = file_get_contents(__DIR__."/../views/fichaFinanceira/boleto.html");
+        $dados = [
+            "valor" => $dadosBoleto->valor,
+            "codigoBarras" => $dadosBoleto->codigoBarras,
+            "nossoNumero" => $dadosBoleto->nossoNumero,
+            "id" => $id,
+            "dataEmissao" => date('d/m/Y', strtotime($dadosBoleto->dataEmissao)),
+            "dataVencimento" => date('d/m/Y', strtotime($dadosBoleto->dataVencimento)),
+            "cliente" => $dadosCliente->nomeCompleto,
+            "endereco" => $dadosCliente->endereco,
+            "numero" => $dadosCliente->numero,
+            "cidade" => $dadosCliente->cidade,
+            "cep" => $dadosCliente->cep,
+            "estado" => $dadosCliente->estado,
+            "bairro" => $dadosCliente->bairro,
+            "cpf" => $dadosCliente->cpf,
+            "dataAtual" => date('d/m/Y'),
+            "barcode" => substr($this->codigoBarras, "0"),
+        ];
+        foreach($dados as $indice => $dados){
+            $indice = "{{".$indice."}}";
+            $boleto = str_replace($indice, $dados, $boleto);
+        }
+        if(file_put_contents(__DIR__."/../views/fichaFinanceira/dinamicos/boleto.html", $boleto) == false){
+            parent::alerta("error", "Erro ao gerar recibo", "Entre em contato com o administrador", "/ficha/cliente/$dadosTitulo->cliente");
+            die();
+        }
+    }
+
+    private function formataCodigoBarras($codigo){
+        $codigoFormatado = null;
+        $quantidadeNumeros = strlen($codigo);
+        $codigoFormatado = $codigo[0].$codigo[1].$codigo[2].$codigo[3].$codigo[4].".".$codigo[5].$codigo[6].$codigo[7].$codigo[8].
+            $codigo[9]." ".$codigo[10].$codigo[11].$codigo[12].$codigo[13].$codigo[14].".".$codigo[15].$codigo[16].$codigo[17].
+            $codigo[18].$codigo[19].$codigo[20]." ".$codigo[21].$codigo[22].$codigo[23].$codigo[24].$codigo[25].".".$codigo[26].
+            $codigo[27].$codigo[28].$codigo[29].$codigo[30].$codigo[31]." ".$codigo[32]." ".$codigo[33].$codigo[34].$codigo[35].
+            $codigo[36].$codigo[37].$codigo[38].$codigo[39].$codigo[40].$codigo[41].$codigo[42].$codigo[43].$codigo[44].$codigo[45].
+            $codigo[46];
+        return $codigoFormatado;
+    }
+
+    private function codigo($codigo){
+        $this->codigoBarras = "";
+        $fino = 1;
+        $largo = 3;
+        $altura = 50;
+
+        $barcodes[0] = '00110';
+        $barcodes[1] = '10001';
+        $barcodes[2] = '01001';
+        $barcodes[3] = '11000';
+        $barcodes[4] = '00101';
+        $barcodes[5] = '10100';
+        $barcodes[6] = '01100';
+        $barcodes[7] = '00011';
+        $barcodes[8] = '10010';
+        $barcodes[9] = '01010';
+
+        for($f1 = 9; $f1 >= 0; $f1--){
+            for($f2 = 9; $f2 >= 0; $f2--){
+                $f = ($f1*10)+$f2;
+                $texto = '';
+                for($i = 1; $i < 6; $i++){
+                    $texto .= substr($barcodes[$f1], ($i-1), 1).substr($barcodes[$f2] ,($i-1), 1);
+                }
+                $barcodes[$f] = $texto;
+            }
+        }
+
+        $this->codigoBarras .= '<img src="/src/img/p.gif" width="'.$fino.'" height="'.$altura.'" border="0" />';
+        $this->codigoBarras .= '<img src="/src/img/b.gif" width="'.$fino.'" height="'.$altura.'" border="0" />';
+        $this->codigoBarras .= '<img src="/src/img/p.gif" width="'.$fino.'" height="'.$altura.'" border="0" />';
+        $this->codigoBarras .= '<img src="/src/img/b.gif" width="'.$fino.'" height="'.$altura.'" border="0" />';
+
+        $this->codigoBarras .= '<img ';
+
+        $texto = $codigo;
+
+        if((strlen($texto) % 2) <> 0){
+            //$texto = '0'.$texto;
+        }
+
+        while(strlen($texto) > 0){
+            $i = round(substr($texto, 0, 2));
+            $texto = substr($texto, strlen($texto)-(strlen($texto)-2), (strlen($texto)-2));
+
+            if(isset($barcodes[$i])){
+                $f = $barcodes[$i];
+            }
+
+            for($i = 1; $i < 11; $i+=2){
+                if(substr($f, ($i-1), 1) == '0'){
+                    $f1 = $fino ;
+                }else{
+                    $f1 = $largo ;
+                }
+
+                $this->codigoBarras .= 'src="/src/img/p.gif" width="'.$f1.'" height="'.$altura.'" border="0">';
+                $this->codigoBarras .= '<img ';
+
+                if(substr($f, $i, 1) == '0'){
+                    $f2 = $fino ;
+                }else{
+                    $f2 = $largo ;
+                }
+
+                $this->codigoBarras .= 'src="/src/img/b.gif" width="'.$f2.'" height="'.$altura.'" border="0">';
+                $this->codigoBarras .= '<img ';
+            }
+        }
+        $this->codigoBarras .= 'src="/src/img/p.gif" width="'.$largo.'" height="'.$altura.'" border="0" />';
+        $this->codigoBarras .= '<img src="/src/img/b.gif" width="'.$fino.'" height="'.$altura.'" border="0" />';
+        $this->codigoBarras .= '<img src="/src/img/p.gif" width="1" height="'.$altura.'" border="0" />';
     }
 
     public function excluir($data){

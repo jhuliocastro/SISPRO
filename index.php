@@ -44,6 +44,7 @@ $router->get("/excluir/{id}/{cliente}", "FichaFinanceira:excluir");
 $router->get("/excluir/sender/{id}/{cliente}", "FichaFinanceira:excluirSender");
 $router->get("/estorno/{id}/{cliente}", "FichaFinanceira:estorno");
 $router->get("/estorno/sender/{id}/{cliente}", "FichaFinanceira:estornoSender");
+$router->get("/boleto/{id}", "FichaFinanceira:boleto");
 
 /*
  * CARNÊS

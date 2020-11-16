@@ -109,6 +109,25 @@
                     alert(msg);
                 });
         }
+
+        function boleto(id){
+            $.ajax({
+                url : "/ficha/boleto/" + id,
+                type : 'get',
+                beforeSend : function(){
+                    loader();
+                }
+            })
+                .done(function(msg){
+                    desloader();
+                    window.open("/app/views/fichaFinanceira/dinamicos/boleto.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
+                })
+                .fail(function(jqXHR, textStatus, msg){
+                    desloader();
+                    alert(msg);
+                });
+        }
+
         var id;
         var tabela = $('#tabela').DataTable({
             dom: 'Bfrtip',
