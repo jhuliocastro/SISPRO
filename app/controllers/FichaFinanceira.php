@@ -393,6 +393,9 @@ class FichaFinanceira extends Controller{
                 case 'APROVADO':
                     $remessaStatus = "<img data-role='hint' data-hint-text='Remessa Aceita' src='/src/img/circuloVerde.png' class='img-tabela'>";
                     break;
+                case 'CANCELADO':
+                    $remessaStatus = "<img data-role='hint' data-hint-text='Remessa Cancelada' src='/src/img/circuloAzul.png' class='img-tabela'>";
+                    break;
                 default:
                     $remessaStatus = "<img data-role='hint' data-hint-text='Remessa Não Enviada' src='/src/img/circuloTransparente.png' class='img-tabela'>";
             }
