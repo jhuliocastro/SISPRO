@@ -131,6 +131,8 @@ $router->post("/editar", "Produtos:editarSender");
 $router->get("/entrada", "Produtos:entrada");
 $router->post("/entrada", "Produtos:entradaSender");
 $router->get("/historico", "Produtos:historico");
+$router->get("/saida", "Produtos:saida");
+$router->post("/saida", "Produtos:saidaSender");
 
 /*
  * FTTH

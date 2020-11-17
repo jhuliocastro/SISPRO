@@ -49,6 +49,11 @@ class ProdutosModel extends DataLayer
         }
     }
 
+    public function quantidadeAtual($produto){
+        $dados = ($this)->find("nome=:nome", "nome=$produto")->fetch();
+        return $dados;
+    }
+
     public function editar($dados){
         $dados = (object) $dados;
         $query = ($this)->findById($dados->id);

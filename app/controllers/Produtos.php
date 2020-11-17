@@ -31,6 +31,42 @@ class Produtos extends Controller{
         }
     }
 
+    public function saida(){
+        $produtos = new ProdutosModel();
+        $dados = $produtos->lista();
+        $listaProdutos = null;
+        foreach ($dados as $d){
+            $listaProdutos .= "
+                <option>$d->nome</option>
+            ";
+        }
+        parent::render("produtos", "saida", [
+            "produtos" => $listaProdutos
+        ]);
+    }
+
+    public function saidaSender(){
+        $dados = (object) $_POST;
+        var_dump($dados);
+        $produtos = new ProdutosModel();
+        $quantidade = $produtos->quantidadeAtual($dados->nome);
+        var_dump($quantidade);
+        die();
+        if($dados->quantidade > $quantidade){
+            parent::alerta("error", "QUANTIDADE INFORMADA DO PRODUTO É MAIOR QUE A QUANTIDADE NO ESTOQUE", "", "/produtos/saida");
+            die();
+        }
+        $quantidadeNova = $quantidade - $dados->quantidade;
+        $retorno = $produtos->atualizaQuantidade($dados->nome, $quantidadeNova, $quantidade);
+        if($retorno == "ok"){
+            $historico = new HistoricoEstoqueModel();
+            $historico->cadastrar($dados->nome, $dados->motivo, "SAÍDA", $dados->quantidade);
+            parent::alerta("success", "SAÍDA PROCESSADA COM SUCESSO", "QUANTIDADE RESTANTE: ".$quantidadeNova, "/produtos/relacao");
+        }else{
+            parent::alerta("error", "ERRO AO PROCESSAR SAÍDA DO ESTOQUE", $retorno, "/produtos/saida");
+        }
+    }
+
     public function excluir($data){
         parent::alertaQuestion("DESEJA MESMO EXCLUIR ESTE PRODUTO?", $data["nome"], "/produtos/excluir/sender/".$data["id"], "/produtos/relacao");
     }
