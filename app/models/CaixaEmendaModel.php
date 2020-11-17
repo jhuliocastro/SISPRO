@@ -17,6 +17,10 @@ class CaixaEmendaModel extends DataLayer{
         return $this->findById($id);
     }
 
+    public function dadosNome($nome){
+        return $this->find("identificacao=:i", "i=$nome")->fetch();
+    }
+
     public function excluir($id){
         return ($this->findById($id))->destroy();
     }

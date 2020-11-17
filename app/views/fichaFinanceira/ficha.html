@@ -39,7 +39,7 @@
   <body>
     {{menu}}
   </br>
-    <div class="container-fluid">
+    <div class="container-fluid" style="display:none">
         <h4 style="text-align: center;">FICHA FINANCEIRA :: {{cliente}}</h4>
         <div class="card" style="padding: 5px;">
             <div class="card-body">
@@ -92,9 +92,42 @@
         </div>
     </div>
     <script>
-        function recibo(){
-            window.open("/app/views/fichaFinanceira/dinamicos/recibo.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
+        function recibo(id){
+            $.ajax({
+                url : "/ficha/recibo/" + id,
+                type : 'get',
+                beforeSend : function(){
+                    loader();
+                }
+                })
+                .done(function(msg){
+                    desloader();
+                    window.open("/app/views/fichaFinanceira/dinamicos/recibo.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
+                })
+                .fail(function(jqXHR, textStatus, msg){
+                    desloader();
+                    alert(msg);
+                });
         }
+
+        function boleto(id){
+            $.ajax({
+                url : "/ficha/boleto/" + id,
+                type : 'get',
+                beforeSend : function(){
+                    loader();
+                }
+            })
+                .done(function(msg){
+                    desloader();
+                    window.open("/app/views/fichaFinanceira/dinamicos/boleto.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
+                })
+                .fail(function(jqXHR, textStatus, msg){
+                    desloader();
+                    alert(msg);
+                });
+        }
+
         var id;
         var tabela = $('#tabela').DataTable({
             dom: 'Bfrtip',

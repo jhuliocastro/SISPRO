@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container" style="display:none">
+    <h4 style="text-align: center;">CAIXAS DE EMENDA :: DIAGRAMA</h4>
+    <div class="card" style="padding: 5px;">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="dropdown-button">
+                        <button class="button dropdown-toggle">Splitter</button>
+                        <ul class="d-menu place-right" data-role="dropdown">
+                            <li><a onclick="Metro.dialog.open('#adicionarSplitter')">Adicionar</a></li>
+                            <li><a href="#">Excluir</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown-button">
+                        <button class="button dropdown-toggle">Backbone</button>
+                        <ul class="d-menu place-right" data-role="dropdown">
+                            <li><a onclick="Metro.dialog.open('#adicionarBackboneEntrada')">Adicionar</a></li>
+                            <li><a href="#">Excluir</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="adicionarBackboneEntrada" class="dialog" data-role="dialog">
+    <div class="dialog-title">Adicionar Backbone Entrada</div>
+    <div class="dialog-content">
+        <div class="form-group">
+            <select id="backboneEntradaAdicionar">
+                <option>4 Vias</option>
+                <option>6 Vias</option>
+                <option>12 Vias</option>
+                <option>24 Vias</option>
+            </select>
+        </div>
+    </div>
+    <div class="dialog-actions">
+        <button class="button danger js-dialog-close">Cancelar</button>
+        <button id="btnBackboneEntradaAdicionar" type="submit" class="button primary">Adicionar</button>
+    </div>
+</div>
+
+<div id="adicionarSplitter" class="dialog" data-role="dialog">
+    <div class="dialog-title">Adicionar Splitter</div>
+    <div class="dialog-content">
+        <div class="form-group">
+            <select id="sppliterAdicionar">
+                <option>Splitter 1x2 UPC</option>
+                <option>Splitter 1x2 APC</option>
+                <option>Splitter 1x4 UPC</option>
+                <option>Splitter 1x4 APC</option>
+                <option>Splitter 1x8 UPC</option>
+                <option>Splitter 1x8 APC</option>
+                <option>Splitter 1x16 UPC</option>
+                <option>Splitter 1x16 APC</option>
+            </select>
+        </div>
+    </div>
+    <div class="dialog-actions">
+        <button class="button danger js-dialog-close">Cancelar</button>
+        <button id="btnAdicionarSplitter" type="submit" class="button primary">Adicionar</button>
+    </div>
+</div>
+
+<script>
+$("#btnBackboneEntradaAdicionar").click(function (){
+    let backbone = $("#backboneEntradaAdicionar").val();
+    $.ajax({
+        url : "/diagrama/backbone/existe",
+        type : 'post',
+        data : {
+            backbone : backbone,
+            dispositivo: "{{caixa}}"
+        }
+    })
+        .done(function(msg){
+            console.log(msg);
+        })
+        .fail(function(jqXHR, textStatus, msg){
+            alert(msg);
+        });
+});
+
+$("#btnAdicionarSplitter").click(function(){
+    Metro.dialog.close('#adicionarSplitter');
+    let splitter = $("#sppliterAdicionar").val();
+    $.ajax({
+        url : "/diagrama/splitter/adicionar",
+        type : 'post',
+        data : {
+            splitter : splitter
+        }
+        })
+        .done(function(msg){
+            console.log(msg);
+        })
+        .fail(function(jqXHR, textStatus, msg){
+            alert(msg);
+        });
+});
+</script>
+</body>
+</html>

@@ -216,6 +216,7 @@
                 <span class="title">Produtos</span>
             </div>
         </div>
+        <!--
         <div class="section" id="ftth">
             <div class="group">
                 <button class="ribbon-button" onclick="window.location.href='/ftth/postes/cadastrar'">
@@ -245,7 +246,7 @@
                     </span>
                     <span class="caption">Caixa de Emenda</span>
                 </button>
-                <button class="ribbon-button" onclick="window.location.href='/ftth/caixa/emenda'">
+                <button class="ribbon-button" onclick="window.location.href='/ftth/caixa/emenda/diagrama'">
                     <span class="icon">
                         <img src="/src/img/diagrama.png">
                     </span>
@@ -253,7 +254,7 @@
                 </button>
                 <span class="title">Caixa de Emenda</span>
             </div>
-        </div>
+        </div>-->
         <div class="section" id="relatorios">
             <div class="group">
                 <button class="ribbon-button" onclick="window.location.href='/caixa/relatorio/selecionar'">
@@ -285,3 +286,45 @@
         </div>
     </div>
 </nav>
+
+<style>
+    #carrega{
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background-color: white;
+    }
+
+    #loader{
+        margin: 0 auto;
+        top: 48%;
+    }
+</style>
+
+<div id="carrega">
+    <div id="loader" data-role="activity" data-type="square" data-style="color"></div>
+</div>
+<script>
+    $(window).on("load", function(){
+        desloader();
+    });
+
+    function desloader(){
+        $("#loader").delay(500).fadeOut("slow");
+        $("#carrega").delay(500).fadeOut("slow");
+
+        $(".container-fluid").toggle("fast");
+        $(".container").toggle("fast");
+    }
+
+    function loader(){
+        $("#loader").delay(100).fadeIn("slow");
+        $("#carrega").delay(100).fadeIn("slow");
+
+        $(".container-fluid").toggle("slow");
+        $(".container").toggle("slow");
+    }
+</script>
