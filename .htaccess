@@ -1,4 +1,10 @@
 RewriteEngine On
+
+php_value memory_limit 128M
+
+php_value upload_max_filesize 64M
+
+php_value post_max_size 64M
 #Options All -Indexes
 
 ## ROUTER WWW Redirect.
