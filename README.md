@@ -7,3 +7,4 @@ SISTEMA DE GERENCIAMENTO PARA PROVEDORES DE TELECOM OPENSOURCE
 OBS. TODOS OS ARQUIVOS PARA CRONTAB ESTÃO NA PASTA "SCRIPTS"
 
 - Remessa.php (Executar a cada 50 segundos)
+- baixaAutomatica.php (Executar a cada 1 minuto)

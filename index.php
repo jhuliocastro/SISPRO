@@ -139,6 +139,8 @@ $router->post("/saida", "Produtos:saidaSender");
  */
 $router->group("funcionarios");
 $router->get("/relacao", "Funcionarios:relacao");
+$router->get("/cadastrar", "Funcionarios:cadastrar");
+$router->post("/cadastrar", "Funcionarios:cadastrarSender");
 
 /*
  * FTTH
