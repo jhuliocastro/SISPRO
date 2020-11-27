@@ -18,4 +18,8 @@ class LoginModel extends DataLayer
             return $query;
         }
     }
+
+    public function lista(){
+        return $this->find()->fetch(true);
+    }
 }

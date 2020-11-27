@@ -8,3 +8,7 @@ OBS. TODOS OS ARQUIVOS PARA CRONTAB ESTÃO NA PASTA "SCRIPTS"
 
 - Remessa.php (Executar a cada 50 segundos)
 - baixaAutomatica.php (Executar a cada 1 minuto)
+
+####
+HABILITAR REESCRITA DO APACHE
+HABILITAR LEITURA DO .HTACCESS NO DIRETORIO

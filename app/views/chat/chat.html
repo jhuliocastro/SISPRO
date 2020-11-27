@@ -18,15 +18,8 @@
                 <div data-role="splitter" data-split-sizes="20, 80" class="bg-white splitter" data-role-splitter="true">
                     <div class="p-4 split-block" style="flex-basis: calc(20% - 4px);">
                         <ul class="v-menu">
-                            <li class="menu-title">General</li>
-                            <li class="active"><a href="#"><span class="icon mif-users"></span> Support</a></li>
-                            <li class="menu-title">Technical</li>
-                            <li><a href="#"><span class="icon mif-local-service"></span> Hosting</a></li>
-                            <li><a href="#"><span class="icon mif-server"></span> VPS</a></li>
-                            <li><a href="#"><span class="icon mif-library"></span> Domains</a></li>
-                            <li class="menu-title">Finance</li>
-                            <li><a href="#"><span class="icon mif-user-secret"></span> Director</a></li>
-                            <li><a href="#"><span class="icon mif-user-check"></span> Manager</a></li>
+                            <li class="menu-title">Usuários</li>
+                            {{usuarios}}
                         </ul>
                     </div><div class="gutter" style="width: 4px;"></div>
 
@@ -40,31 +33,8 @@
 </div>
 
 <script>
-    var id;
-    var tabela = $('#tabela').DataTable({
-        dom: 'Bfrtip',
-        responsive: false,
-        paging: false,
-        "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
-        }
-    });
+    function chat(){
 
-    function imprimir(id){
-        $.ajax({
-            url: "/contratos/imprimir",
-            type: "POST",
-            data: {
-                id: id
-            },
-            dataType: "html"
-
-        }).done(function(resposta) {
-            console.log(resposta);
-            window.open("/app/views/contratos/dinamicos/contrato.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
-        }).fail(function(jqXHR, textStatus ) {
-            console.log("Request failed: " + textStatus);
-        });
     }
 </script>
 </body>

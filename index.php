@@ -18,6 +18,7 @@ $router->get("/painel", "Painel:home");
  */
 $router->group("chat");
 $router->get("/", "Chat:chat");
+$router->post("/exibir/chat", "Chat:exibirChat");
 
 /*
  * SAIR
