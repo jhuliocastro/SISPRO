@@ -1,6 +1,7 @@
 <nav data-role="ribbonmenu">
     <ul class="tabs-holder">
         <li class="static"><a href="/painel">Painel</a></li>
+        <li><a href="#sispro">Sispro</a></li>
         <li><a href="#clientes">Clientes</a></li>
         <li><a href="#provedor">Provedor</a></li>
         <li><a href="#financeiro">Financeiro</a></li>
@@ -10,6 +11,17 @@
     </ul>
 
     <div class="content-holder">
+        <div class="section" id="sispro">
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/sair'">
+                    <span class="icon">
+                        <img src="/src/img/sair.png">
+                    </span>
+                    <span class="caption">Sair</span>
+                </button>
+                <span class="title">Sair</span>
+            </div>
+        </div>
         <div class="section" id="clientes">
             <div class="group">
                 <button class="ribbon-button" onclick="window.location.href='/clientes/cadastrar'">
