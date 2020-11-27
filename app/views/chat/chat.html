@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{navbar}}
+    <title>SISPRO | {{empresa}}</title>
+</head>
+<body>
+{{menu}}
+</br>
+<div class="container" style="display:none">
+    <h4 style="text-align: center;">CHAT</h4>
+    <div class="card" style="padding: 5px;">
+        <div class="card-body">
+            <div style="height: 400px" class="d-none d-block-md">
+                <div data-role="splitter" data-split-sizes="20, 80" class="bg-white splitter" data-role-splitter="true">
+                    <div class="p-4 split-block" style="flex-basis: calc(20% - 4px);">
+                        <ul class="v-menu">
+                            <li class="menu-title">General</li>
+                            <li class="active"><a href="#"><span class="icon mif-users"></span> Support</a></li>
+                            <li class="menu-title">Technical</li>
+                            <li><a href="#"><span class="icon mif-local-service"></span> Hosting</a></li>
+                            <li><a href="#"><span class="icon mif-server"></span> VPS</a></li>
+                            <li><a href="#"><span class="icon mif-library"></span> Domains</a></li>
+                            <li class="menu-title">Finance</li>
+                            <li><a href="#"><span class="icon mif-user-secret"></span> Director</a></li>
+                            <li><a href="#"><span class="icon mif-user-check"></span> Manager</a></li>
+                        </ul>
+                    </div><div class="gutter" style="width: 4px;"></div>
+
+                    <div class="split-block" style="flex-basis: calc(80% - 4px);">
+                        <div id="chat0" data-role="chat" data-avatar="images/user3-128x128.jpg" data-name="Sandra Bullock" data-height="400" data-title="Support chat" data-welcome="Welcome to Pandora chat!" data-cls-message-left="default fg-dark" data-cls-message-right="info" data-cls-send-button="info" data-on-send="sendMessage" data-role-chat="true" class="chat" style="width: 100%; height: 400px;"><div class="title">Support chat</div><div class="messages"><div class="message left"><div class="message-sender">Welcome</div><div class="message-time">26 Nov 10:07 PM</div><div class="message-item"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAUABQAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+t+KKPxo/GgA70Yo/Gj8aADFH4VesdC1HUl3WtjcXCf344yV/PGKW+0HUtNXddWNzbp/fkjIX88YoAofhR+FH40fjQAfhR+FH40fjQAUUUUAFepeAPh5D9li1LVYhK8g3Q27j5VXszDuT6f5HA+FtOXVvEWn2rjMcko3j1UckfkDX0MBgYHAoARVCKFUBVHAA6ClZQwKkZBGCDS0UAec+Pvh3BJay6lpUQimjBeW3QYVx3Kjsfbv/PyqvpuvnvxfpqaT4l1C1QbY0lJUDsrfMB+RoAyKKKKACiiigDa8GXq6f4p02eQgIJQpJ7Bvlz+tfQP4V8yDg17P4A8cw65ZxWV5IE1KMbfmP+uA7j39R+NAHaUfhSUUAL+FeA+OL1NQ8WalNGQU83YCO+0Bf6V6b498cQ6BZyWlrIJNSkXaApz5QP8AEff0FeKk5OTyTQAUUUUAH40fjRU1naTX93DbQIXmlYIijuTQBc0Dw/eeI74W1mm49XkbhUHqTXsHhz4eaXoCpI8YvbscmaYZAP8Asr0H8/etHwv4cg8M6XHaxANIfmllxy7dz9PStigA/Gk/GlooA5bxJ8PdL19XkWMWd43PnwjGT/tL0P8AP3rx/X/D954cvjbXibT1SReVceoNfRFZHijw5B4m0uS1lAWQfNFLjlG7H6etAHz5+NH41NeWk1hdzW06FJonKMp7EGoaACvQfhBowudTudRkXK2y7I8j+Nup/Afzrz6vafhRaCDwmkgHM8zufwO3/wBloA7Kiij8KACkpaSgBaSj8KKAPJvi/owttTttRjXC3K7JMf3l6H8R/KvPq9p+K1qJ/CbyEcwTI4P1O3/2avFqAP/Z" class="message-avatar"><div class="message-text default fg-dark">Welcome to Pandora chat!</div></div></div></div><div class="message-input"><div class="input"><input type="text" data-role-input="true" data-role="input" class=""><div class="button-group"><button class="button input-clear-button" tabindex="-1" type="button"><span class="default-icon-cross"></span></button><button class="button input-custom-button info js-chat-send-button" tabindex="-1" type="button">Send</button></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var id;
+    var tabela = $('#tabela').DataTable({
+        dom: 'Bfrtip',
+        responsive: false,
+        paging: false,
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+        }
+    });
+
+    function imprimir(id){
+        $.ajax({
+            url: "/contratos/imprimir",
+            type: "POST",
+            data: {
+                id: id
+            },
+            dataType: "html"
+
+        }).done(function(resposta) {
+            console.log(resposta);
+            window.open("/app/views/contratos/dinamicos/contrato.html", "janela2","width=800,height=600, directories=no, location=no, menubar=no, scrollbars=no, status=no, toolbar=no, resizable=no");
+        }).fail(function(jqXHR, textStatus ) {
+            console.log("Request failed: " + textStatus);
+        });
+    }
+</script>
+</body>
+</html>

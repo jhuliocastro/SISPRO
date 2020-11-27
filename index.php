@@ -14,6 +14,12 @@ $router->post("/login", "Login:login");
 $router->get("/painel", "Painel:home");
 
 /*
+ * CHAT
+ */
+$router->group("chat");
+$router->get("/", "Chat:chat");
+
+/*
  * SAIR
  */
 $router->group("sair");
