@@ -13,13 +13,28 @@
     <div class="content-holder">
         <div class="section" id="sispro">
             <div class="group">
-                <button class="ribbon-button" onclick="window.location.href='/chat'">
+                <button disabled class="ribbon-button" onclick="window.location.href='/chat'">
                     <span class="icon">
                         <img src="/src/img/chat.png">
                     </span>
                     <span class="caption">Chat</span>
                 </button>
                 <span class="title">Chat</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/tickets'">
+                    <span class="icon">
+                        <img src="/src/img/add.png">
+                    </span>
+                    <span class="caption">Novo</span>
+                </button>
+                <button class="ribbon-button" onclick="window.location.href='/tickets'">
+                    <span class="icon">
+                        <img src="/src/img/suporteSistema.png">
+                    </span>
+                    <span class="caption">Tickets</span>
+                </button>
+                <span class="title">Suporte do Sistema</span>
             </div>
             <div class="group">
                 <button class="ribbon-button" onclick="window.location.href='/sair'">
@@ -300,6 +315,15 @@
                     <span class="caption">Caixa Diário</span>
                 </button>
                 <span class="title">Caixa</span>
+            </div>
+            <div class="group">
+                <button class="ribbon-button" onclick="window.location.href='/relatorios/clientes/financeiro/sem'">
+                    <span class="icon">
+                        <img src="/src/img/semFinanceiro.png">
+                    </span>
+                    <span class="caption">Sem Financeiro</span>
+                </button>
+                <span class="title">Clientes</span>
             </div>
             <div class="group">
                 <button class="ribbon-button" onclick="window.location.href='/relatorios/faturas/atrasadas'">

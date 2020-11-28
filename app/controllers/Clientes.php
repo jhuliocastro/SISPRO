@@ -3,6 +3,7 @@ namespace Controllers;
 
 use Controllers\Mikrotik;
 use Models\ClientesModel;
+use Models\FinanceiroModel;
 use Models\Nas;
 use Models\PlanosModel;
 use Models\Radcheck;
@@ -19,6 +20,27 @@ class Clientes extends Controller
     public static function cadastrar(){
         parent::render("clientes", "cadastrar", [
             "planos" => self::planosSelect()
+        ]);
+    }
+
+    public function semFinanceiro(){
+        $c = new ClientesModel();
+        $clientes = $c->ativados();
+        $tabela = null;
+        foreach($clientes as $d){
+            $financeiro = new FinanceiroModel();
+            $retorno = $financeiro->quantFinanceiro($d->nomeCompleto);
+            if($retorno == 0){
+                $tabela .= "
+                    <tr>
+                        <td>$d->id</td>
+                        <td>$d->nomeCompleto</td>
+                    </tr>
+                ";
+            }
+        }
+        parent::render("relatorios", "semFinanceiro", [
+            "tabela" => $tabela
         ]);
     }
 

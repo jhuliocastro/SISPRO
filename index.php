@@ -116,6 +116,7 @@ $router->post("/upload", "Dossie:uploadSender");
 $router->group("relatorios");
 $router->get("/faturas/atrasadas", "FichaFinanceira:faturasAtrasadas");
 $router->get("/conexoes", "ConexoesAcesso:conexoes");
+$router->get("/clientes/financeiro/sem", "Clientes:semFinanceiro");
 
 /*
  * FORNECEDORES

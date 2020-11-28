@@ -17,6 +17,10 @@ class FinanceiroModel extends DataLayer{
         return $this->findById($id);
     }
 
+    public function quantFinanceiro($cliente){
+        return $this->find("cliente=:cliente", "cliente=$cliente")->count();
+    }
+
     public function estorno($id){
         $f = (new FinanceiroModel())->findById($id); 
         $f->status = "EM ABERTO";
