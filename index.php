@@ -27,6 +27,12 @@ $router->group("sair");
 $router->get("/", "Sair:sair");
 
 /*
+ * PONTO ELETRÔNICO
+ */
+$router->group("ponto");
+$router->get("/configuracoes", "Ponto:configuracoes");
+
+/*
  * CLIENTES
  */
 $router->group("clientes");
