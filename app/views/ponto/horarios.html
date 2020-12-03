@@ -6,22 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {{navbar}}
     <title>SISPRO | {{empresa}}</title>
+    <style>
+        .fild{
+            border-bottom: 2px solid #DCDCDC;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 {{menu}}
 </br>
 <div class="container" style="display: none">
     <h4 style="text-align: center;">PONTO ELETRÔNICO :: HORÁRIOS</h4>
-    <div class="col-md-6">
-        <div class="card" style="padding: 5px;">
-            <div class="card-header">
-                <p>Horários</p>
-            </div>
-            <div class="card-body">
-                {{horarios}}
-            </div>
-        </div>
-    </div>
+    {{horarios}}
 
 </div>
 </body>
