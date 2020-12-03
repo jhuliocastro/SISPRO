@@ -31,6 +31,7 @@ $router->get("/", "Sair:sair");
  */
 $router->group("ponto");
 $router->get("/horarios", "Ponto:horarios");
+$router->post("/alterar", "Ponto:alterar");
 
 /*
  * CLIENTES

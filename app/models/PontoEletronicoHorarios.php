@@ -9,6 +9,21 @@ class PontoEletronicoHorarios extends DataLayer{
         parent::__construct('ponto_eletronico_horarios', [], 'id', true, 'interno');
     }
 
+    public function alterar($dados){
+        $dados = (object) $dados;
+        $alterar = ($this)->find("funcionario=:funcionario", "funcionario=$dados->funcionario")->fetch();
+        $alterar->horaChegada = $dados->horaChegada;
+        $alterar->horaSaida = $dados->horaSaida;
+        $alterar->horaAlmocoEntrada = $dados->horaChegadaAlmoco;
+        $alterar->horaAlmocoSaida = $dados->horaSaidaAlmoco;
+        $alterar->change()->save();
+        if($alterar->fail()){
+            return $alterar->fail()->getMessage();
+        }else{
+            return "ok";
+        }
+    }
+
     public function existe($funcionario){
         return $this->find("funcionario=:funcionario", "funcionario=$funcionario")->count();
     }
@@ -21,5 +36,9 @@ class PontoEletronicoHorarios extends DataLayer{
         }else{
             return true;
         }
+    }
+
+    public function horarios($funcionario){
+        return $this->find("funcionario=:funcionario", "funcionario=$funcionario")->fetch();
     }
 }
