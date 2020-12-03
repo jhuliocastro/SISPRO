@@ -34,6 +34,7 @@ class FinanceiroModel extends DataLayer{
         $f->idIntegracao = "";
         $f->codigoBarras = "";
         $f->remessa = "";
+        $f->dataPagamento = "";
         $f->change()->save();
         if($f->fail()){
             return $f->fail()->getMessage();
