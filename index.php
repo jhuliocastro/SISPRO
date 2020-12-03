@@ -30,7 +30,7 @@ $router->get("/", "Sair:sair");
  * PONTO ELETRÔNICO
  */
 $router->group("ponto");
-$router->get("/configuracoes", "Ponto:configuracoes");
+$router->get("/horarios", "Ponto:horarios");
 
 /*
  * CLIENTES

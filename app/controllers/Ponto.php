@@ -11,12 +11,21 @@ class Ponto extends Controller{
         parent::__construct();
     }
 
-    public function configuracoes(){
+    public function horarios(){
         $funcionarios = new FuncionariosModel();
         $dadosFuncionarios = $funcionarios->lista();
         $horarios = null;
         $i = 0;
         foreach($dadosFuncionarios as $d){
+            $model = new PontoEletronicoHorarios();
+            $retornoExiste = $model->existe($d->nome);
+            if($retornoExiste == 0){
+                $cadastrar = $model->cadastrar($d->nome);
+                if($cadastrar != true){
+                    parent::alerta("error", "ERRO AO PROCESSAR REQUISIÇÃO", $cadastrar, "/painel");
+                    die();
+                }
+            }
             if($i == 0){
                 $horarios .= "<div class='row'>";
             }
