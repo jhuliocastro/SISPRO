@@ -11,6 +11,26 @@ class Ponto extends Controller{
         parent::__construct();
     }
 
+    public function bater(){
+        $funcionarios = new FuncionariosModel();
+        $func = $funcionarios->lista();
+        $lista = null;
+        foreach ($func as $d){
+            $lista .= "<option>$d->nome</option>";
+        }
+        $data = date('Y-m-d');
+        $hora = date('H:m:s');
+        parent::render("ponto", "baterPonto", [
+            "data" => $data,
+            "hora" => $hora,
+            "funcionarios" => $lista
+        ]);
+    }
+
+    public function baterSender(){
+        var_dump($_POST);
+    }
+
     public function alterar(){
         $model = new PontoEletronicoHorarios();
         $retorno = $model->alterar($_POST);
