@@ -3,6 +3,7 @@ namespace Controllers;
 
 use Models\PontoEletronicoHorarios;
 use Models\FuncionariosModel;
+use Models\PontoModel;
 
 class Ponto extends Controller{
     public function __construct($router)
@@ -28,7 +29,24 @@ class Ponto extends Controller{
     }
 
     public function baterSender(){
-        var_dump($_POST);
+        $dados = $_POST;
+        $dados["usuarioResponsavel"] = $_SESSION["usuario"];
+        $ponto = new PontoModel();
+        //ANALISE SE VAI SER ENTRADA OU SAIDA
+        $entradaSaida = $ponto->pontosPorFuncionario($dados["funcionario"]);
+        $quantEntradaSaida = count($entradaSaida);
+        if($quantEntradaSaida % 2 == 0){
+            $dados["es"] = "ENTRADA";
+        }else{
+            $dados["es"] = "SAIDA";
+        }
+        //CADASTRO DO PONTO
+        $retorno = $ponto->cadastrar($dados);
+        if($retorno == "ok"){
+            parent::alerta("success", "PONTO CONFIRMADO", $dados["funcionario"], "/painel");
+        }else{
+            parent::alerta("error", "ERRO AO PROCESSAR REQUISIÇÃO", $retorno, "/painel");
+        }
     }
 
     public function alterar(){
