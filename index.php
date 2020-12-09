@@ -126,6 +126,8 @@ $router->group("relatorios");
 $router->get("/faturas/atrasadas", "FichaFinanceira:faturasAtrasadas");
 $router->get("/conexoes", "ConexoesAcesso:conexoes");
 $router->get("/clientes/financeiro/sem", "Clientes:semFinanceiro");
+$router->get("/ponto", "Ponto:relatorio");
+$router->get("/ponto/{funcionario}", "Ponto:relatorioSender");
 
 /*
  * FORNECEDORES

@@ -28,6 +28,47 @@ class Ponto extends Controller{
         ]);
     }
 
+    public function relatorio(){
+        $funcionarios = new FuncionariosModel();
+        $dados = $funcionarios->lista();
+        $lista = [];
+        foreach($dados as $d){
+            $lista[$d->nome] = "$d->nome";
+        }
+        parent::render("ponto", "relatorio", [
+            "opcoes" => json_encode($lista)
+        ]);
+    }
+
+    public function relatorioSender($dados){
+        $ponto = new PontoModel();
+        $pontos = $ponto->pontosPorFuncionario($dados["funcionario"]);
+        $tabela = null;
+        $i = 0;
+        foreach($pontos as $d){
+            if($i == 0){
+                $tipo = "ENTRADA";
+            }else if($i == 1){
+                $tipo = "SAÍDA";
+                $i = 0;
+            }
+            $data = date("H:i:m d/m/Y", strtotime($d->created_at));
+            $tabela .= "
+                <tr>
+                    <td>$d->id</td>
+                    <td>$tipo</td>
+                    <td>$data</td>
+                    <td>$d->motivoAtraso</td>
+                </tr>
+            ";
+            $i++;
+        }
+        parent::render("ponto", "relatorioSender", [
+            "funcionario" => $dados["funcionario"],
+            "tabela" => $tabela
+        ]);
+    }
+
     public function baterSender(){
         $dados = $_POST;
         $dados["usuarioResponsavel"] = $_SESSION["usuario"];

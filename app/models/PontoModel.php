@@ -13,6 +13,10 @@ class PontoModel extends DataLayer{
         return $this->find("funcionario=:funcionario", "funcionario=$funcionario")->fetch(true);
     }
 
+    public function lista(){
+        return $this->find()->fetch(true);
+    }
+
     public function cadastrar($dados){
         $dados = (object) $dados;
         $this->funcionario = $dados->funcionario;
