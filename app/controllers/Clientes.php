@@ -68,6 +68,27 @@ class Clientes extends Controller
         ]);
     }
 
+    public function inativos(){
+        $clientes = new ClientesModel();
+        $dados = $clientes->inativos();
+        $tabela = null;
+        foreach($dados as $d){
+            $data = date("d/m/Y", strtotime($d->dataCadastro));
+            $dataInativo = date("d/m/Y", strtotime($d->dataInativo));
+            $tabela .= "
+            <tr>
+                <td>$d->nomeCompleto</td>
+                <td>$d->plano</td>
+                <td>$data</td>
+                <td>$dataInativo</td>
+            </tr>
+            ";
+        }
+        parent::render("clientes", "inativos", [
+            "tabela" => $tabela
+        ]);
+    }
+
     public function verificaCPF(){
         $cpf = $_POST["cpf"];
         $clientes = new ClientesModel();

@@ -22,6 +22,10 @@ class ClientesModel extends DataLayer
         return $this->find("ativo=:ativo", "ativo=1")->order("nomeCompleto ASC")->fetch(true);
     }
 
+    public function inativos(){
+        return $this->find("desativado=:desativado", "desativado=1")->fetch(true);
+    }
+
     public function dadosNome($cliente){
         return $this->find("nomeCompleto=:nome", "nome=$cliente")->fetch();
     }

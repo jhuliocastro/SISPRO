@@ -11,6 +11,7 @@
             width: 40px;
         }
     </style>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 {{menu}}
@@ -45,6 +46,14 @@
             autoOpen: false,
             width: 800,
             modal: true,
+            buttons: {
+                "Delete all items": function() {
+                    $( this ).dialog( "close" );
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            },
             show: {
                 effect: "fade",
                 duration: 500

@@ -44,6 +44,7 @@ $router->post("/cadastrar", "Clientes:cadastrarSender");
 $router->get("/editar/{cliente}", "Clientes:editar");
 $router->get("/lista/ativados", "Clientes:ativados");
 $router->get("/lista/bloqueados", "Clientes:bloqueados");
+$router->get("/lista/inativos", "Clientes:inativos");
 $router->get("/bloquear/{id}", "Clientes:bloquear");
 $router->get("/bloquear/sender/{id}", "Clientes:bloquearSender");
 $router->post("/verifica/cpf","Clientes:verificaCPF");
