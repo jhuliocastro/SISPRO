@@ -9,7 +9,13 @@ class Dossie extends Controller{
     {
         $this->router = $router;
         parent::__construct();
+        self::pasta();
+    }
 
+    private static function pasta(){
+        if(!is_dir("/arquivos")){
+            mkdir(__DIR__."/../../../arquivos", 0777, true);
+        }
     }
 
     public function excluir($dados){
