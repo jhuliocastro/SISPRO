@@ -119,6 +119,7 @@ $router->get("/arquivos", "Dossie:arquivos");
 $router->get("/arquivos/{cliente}", "Dossie:cliente");
 $router->get("/upload", "Dossie:upload");
 $router->post("/upload", "Dossie:uploadSender");
+$router->get("/excluir/{arquivo}", "Dossie:excluir");
 
 /*
  * RELATORIOS

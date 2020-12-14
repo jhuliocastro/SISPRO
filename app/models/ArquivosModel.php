@@ -9,4 +9,8 @@ class ArquivosModel extends DataLayer
     {
         parent::__construct('arquivos', [], 'id', true, 'interno');
     }
+
+    public function excluir($arquivo){
+        return ($this)->find("arquivo=:arquivo", "arquivo=$arquivo")->destroy();
+    }
 }

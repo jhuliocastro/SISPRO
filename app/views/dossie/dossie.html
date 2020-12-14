@@ -12,6 +12,7 @@
         }
     </style>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 {{menu}}
@@ -32,26 +33,78 @@
     <div id="pdf"></div>
 </div>
 <script>
+    var arquivoAjax;
     function diretorio(cliente){
         window.location.href = "/dossie/arquivos/" + cliente;
     }
 
     function vizualizar(arquivo){
+        arquivoAjax = arquivo;
         let t = "<embed style='width: 100%; height: 500px;' src=\"/arquivos/" + arquivo + "\" type='application/pdf'>";
         $("#pdf").html(t);
         $("#dialogArquivo").dialog("open");
     }
+
     $(document).ready(function(){
         $("#dialogArquivo").dialog({
             autoOpen: false,
             width: 800,
             modal: true,
             buttons: {
-                "Delete all items": function() {
+                "Deletar Arquivo": function() {
                     $( this ).dialog( "close" );
-                },
-                Cancel: function() {
-                    $( this ).dialog( "close" );
+
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-success',
+                            cancelButton: 'btn btn-danger'
+                        }
+                    })
+
+                    swalWithBootstrapButtons.fire({
+                        title: 'DESEJA REALMENTE EXCLUIR ESSE ARQUIVO?',
+                        text: "ESSA AÇÃO NÃO TEM VOLTA",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'SIM, EXCLUIR',
+                        cancelButtonText: 'NÃO, CANCELAR',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url : "/dossie/excluir/" + arquivoAjax,
+                                type : 'get',
+                                beforeSend : function(){
+                                    loader();
+                                }
+                            })
+                                .done(function(msg){
+                                    desloader();
+                                    swalWithBootstrapButtons.fire(
+                                        'ARQUIVO DELETADO',
+                                        'NÃO É POSSÍVEL RECUPERÁ-LO',
+                                        'success'
+                                    )
+                                })
+                                .fail(function(jqXHR, textStatus, msg){
+                                    swalWithBootstrapButtons.fire(
+                                        'ERRO',
+                                        'O ARQUIVO NÃO FOI DELETADO',
+                                        'error'
+                                    )
+                                });
+
+                        } else if (
+                            /* Read more about handling dismissals below */
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons.fire(
+                                'CANCELADO',
+                                'O ARQUIVO NÃO FOI DELETADO',
+                                'info'
+                            )
+                        }
+                    })
                 }
             },
             show: {

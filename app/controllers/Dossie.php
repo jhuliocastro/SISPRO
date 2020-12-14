@@ -9,6 +9,13 @@ class Dossie extends Controller{
     {
         $this->router = $router;
         parent::__construct();
+
+    }
+
+    public function excluir($dados){
+        $arquivos = new ArquivosModel();
+        $arquivos->excluir($dados["arquivo"]);
+        unlink("/arquivos/".$dados["arquivo"]);
     }
 
     public function upload(){
