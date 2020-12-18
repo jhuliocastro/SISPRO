@@ -106,7 +106,7 @@ class Carne extends Controller{
     public function gerar($dados){
         $cliente = $dados["cliente"];
         $financeiro = new FinanceiroModel();
-        $dados = $financeiro->find("cliente=:cliente", "cliente=$cliente")->order("dataVencimento ASC")->fetch(true);
+        $dados = $financeiro->find("cliente=:cliente AND status=:status", "cliente=$cliente&status=EM ABERTO")->order("dataVencimento ASC")->fetch(true);
         $titulos = null;
         foreach($dados as $d){
             $texto = date("d/m/Y", strtotime($d->dataVencimento))." (".$d->descricao.")";
