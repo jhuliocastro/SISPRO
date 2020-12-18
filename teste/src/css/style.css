@@ -1,0 +1,124 @@
+body {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #172C3D;
+
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 10px;
+    width: 98%;
+    display: block;
+}
+
+.txt1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #9CC;
+    border: 1px solid #333;
+}
+
+.txt1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #9CC;
+    border: 1px solid #333;
+}
+
+.txt {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #9CC;
+    border: 1px solid #333;
+}
+
+.tabela {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border: 0px;
+
+}
+
+.txtdis {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border: 1px solid #333;
+}
+
+.font {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 12px;
+}
+
+.font10w {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    color: #FFF;
+}
+
+.CAPT {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    color: #000;
+    font-weight: bold;
+}
+
+.txterr {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    background-color: #F66;
+}
+
+
+/** FIND CLIENTE */
+#div-find-cliente {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    width: fit-content;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #333;
+    padding: 5px;
+    box-sizing: border-box;
+    -webkit-box-shadow: 8px 8px 15px 2px rgba(61, 61, 61, 0.14);
+    -moz-box-shadow: 8px 8px 15px 2px rgba(61, 61, 61, 0.14);
+    box-shadow: 8px 8px 15px 2px rgba(61, 61, 61, 0.14);
+}
+
+.div-info-find-cliente {
+    font-weight: bold;
+    padding: 3px;
+    font-size: 14px;
+    width: 133px;
+}
+
+.row-find-cliente {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    min-width: 250px;
+    width: fit-content;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+.row-find-cliente:not(:last-child) {
+    border-bottom: 1px dashed rgba(42, 72, 97, 0.2);
+}
+
+.row-find-cliente:hover{
+    background-color: #406380;
+    color: #fff;
+    border: none;
+}

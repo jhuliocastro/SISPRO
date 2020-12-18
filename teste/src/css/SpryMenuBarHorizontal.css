@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+ul.MenuBarHorizontal {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 11px;
+    cursor: default;
+    width: auto;
+
+}
+
+ul.MenuBarActive {
+    z-index: 1000;
+}
+
+ul.MenuBarHorizontal li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 100%;
+    position: relative;
+    text-align: left;
+    cursor: pointer;
+    background-color: #FFF;
+    width: auto;
+    padding: 2px;
+}
+
+ul.MenuBarHorizontal li :first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+ul.MenuBarHorizontal li :last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+ul.MenuBarHorizontal ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 100%;
+    z-index: 1020;
+    cursor: default;
+    width: auto;
+    position: absolute;
+    left: -1000em;
+    border-radius: 5px;
+    margin-top: 5px;
+    -webkit-box-shadow: 8px 8px 15px 2px rgba(61, 61, 61, 0.14);
+    -moz-box-shadow: 8px 8px 15px 2px rgba(61, 61, 61, 0.14);
+    box-shadow: 8px 8px 15px 2px rgba(61, 61, 61, 0.14);
+}
+
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible {
+    left: auto;
+}
+
+ul.MenuBarHorizontal ul li {
+    min-width: 140px;
+    width: fit-content;
+    border-width: 0px;
+}
+
+ul.MenuBarHorizontal ul ul {
+
+    position: absolute;
+    margin: -5% 0 0 95%;
+}
+
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible ul.MenuBarSubmenuVisible {
+    left: auto;
+    top: 0;
+}
+
+ul.MenuBarHorizontal a {
+
+    display: block;
+    cursor: pointer;
+    background-color: #FFF;
+    padding: 0.5em 0.75em;
+    color: #333;
+    text-decoration: none;
+    width: auto;
+
+}
+
+ul.MenuBarHorizontal ul a {
+    min-width: 130px;
+    max-width: fit-content;
+}
+
+ul.MenuBarHorizontal a:hover,
+ul.MenuBarHorizontal {
+    background-color: #92C3C3;
+    color: #FFF;
+    border-radius: 5px;
+
+}
+
+ul.MenuBarHorizontal a.MenuBarItemHover,
+ul.MenuBarHorizontal a.MenuBarItemSubmenuHover,
+ul.MenuBarHorizontal a.MenuBarSubmenuVisible {
+    background-color: #92C3C3;
+    color: #FFF;
+
+
+}
+
+
+ul.MenuBarHorizontal a.MenuBarItemSubmenu {
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+}
+
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenu {
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+}
+
+ul.MenuBarHorizontal a.MenuBarItemSubmenuHover {
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+}
+
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenuHover {
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+}
+
+
+ul.MenuBarHorizontal iframe {
+    position: absolute;
+    z-index: 1010;
+    filter: alpha(opacity:0.1);
+}
+
+@media screen,
+projection {
+    ul.MenuBarHorizontal li.MenuBarItemIE {
+        display: inline;
+        float: left;
+        background: #FFF;
+    }
+}
