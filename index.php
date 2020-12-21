@@ -51,6 +51,7 @@ $router->post("/verifica/cpf","Clientes:verificaCPF");
 $router->get("/desbloquear/{id}", "Clientes:desbloquear");
 $router->get("/desbloquear/sender/{id}", "Clientes:desbloquearSender");
 $router->get("/dados/{id}", "Clientes:dados");
+$router->get("/consultar", "Clientes:consultar");
 
 /*
  * FICHA FINANCEIRA

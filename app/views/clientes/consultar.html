@@ -1,0 +1,33 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>SISPRO | {{empresa}}</title>
+    {{navbar}}
+    <style>
+        #pagina{
+            margin: 0 auto;
+            background-color: white;
+            width: 90%;
+            height: 70%;
+        }
+    </style>
+</head>
+
+<body id="corpo">
+{{menu}}
+    <div id="pagina">
+        <table class="display" id="tabelaClientes">
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+            </tr>
+            {{clientes}}
+        </table>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        $('#tabelaClientes').dataTable();
+    });
+</script>

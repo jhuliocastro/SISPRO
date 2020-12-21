@@ -23,6 +23,24 @@ class Clientes extends Controller
         ]);
     }
 
+    public function consultar(){
+        $clientesModel = new ClientesModel();
+        $clientes = $clientesModel->lista();
+        //var_dump($clientes);
+        $tabela = null;
+        foreach($clientes as $cliente){
+            $tabela .= "
+                <tr>
+                    <td>$cliente->id</td>
+                    <td>$cliente->nomeCompleto</td>
+                </tr>
+            ";
+        }
+        parent::render("clientes", "consultar", [
+            "clientes" => $tabela
+        ]);
+    }
+
     public function semFinanceiro(){
         $c = new ClientesModel();
         $clientes = $c->ativados();

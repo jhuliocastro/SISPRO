@@ -60,7 +60,7 @@ class Controller
         //PEGA O CONTEUDO DOS ARQUIVOS NECESSÁRIOS
         $url = __DIR__."/../views/".$bloco."/".$pagina.".html";
         $urlNavbar = __DIR__."/../views/navbar.html";
-        $urlMenu = __DIR__."/../views/menu.html";
+        $urlMenu = __DIR__ . "/../views/menu.html";
         $conteudo = file_get_contents($url);
         $navbar = file_get_contents($urlNavbar);
         $menu = file_get_contents($urlMenu);
